@@ -10,14 +10,81 @@
 </head>
 <body>
   <h1>Testing API</h1>
-  <input type="text" value='user@user.com' id="email" placeholder="Enter Email">
-  <input type="text" value='duck' id="password" placeholder="Enter Pass">
-  <button id="login">Login</button>
-  <button id="beer">Beer</button>
+  <div class="loginSignUp">
+    <input type="text" value='user@user.com' id="email" placeholder="Enter Email">
+    <input type="text" value='duck' id="password" placeholder="Enter Pass">
+    <button id="login">Login</button>
+    <button id="signup">SignUp</button>
+    <button id="confirm">Confirm</button>
+  </div>
+
+  <div class="beer">
+    <input type="text" id="beerName" placeholder="Enter Beer Name">
+
+    <button id="beer">Beer</button>
+    <button id="addBeer">Add Beer</button>
+    <button id="updateBeer">Update Beer</button>
+    <button id="deleteBeer">Delete Beer</button>
+  </div>
+
 
   <p id="info"></p>
 
   <script>
+  $('#confirm').hide();
+//--------------------------------
+  // USER
+  var confirmLink = '';
+
+    $('#signup').on('click', function(){
+      var email = $('#email')[0].value
+      var password = $('#password')[0].value
+      var passwordConfirm = $('#password')[0].value
+
+      var settings = {
+        async: true,
+        crossDomain: true,
+        url: "http://localhost:3000/users",
+        method: "POST",
+        data: '{"user": {"email": "' + email +'", "password": "' + password + '",' + '"password_confirmation": "'+ passwordConfirm + '"}}',
+        headers: {
+          "content-type": "application/json",
+          "cache-control": "no-cache"
+        },
+        error: function(e){console.log(e.responseText)}
+      }
+
+      $.ajax(settings).done(function (response) {
+        console.log("Signup run: ")
+        console.log(response);
+
+        confirmLink = response['confirm_link']
+
+        $('#info').append(response)
+        $('#confirm').show();
+      });
+
+    });
+    $('#confirm').on('click', function(){
+      var settingsConfirm = {
+          "async": true,
+          "crossDomain": true,
+          "url": confirmLink,
+          "method": "POST",
+          "headers": {
+            "cache-control": "no-cache"
+          }
+        }
+
+        $.ajax(settingsConfirm).done(function (response) {
+          console.log("confirm run: ")
+          console.log(response);
+          $('#confirm').hide();
+        });
+    });
+
+//--------------------------------
+  // LOGIN
   var token = ''
 
     $('#login').on('click', function(){
@@ -45,13 +112,14 @@
       });
 
     })
-
+//--------------------------------
+  // BEER
     $('#beer').on('click', function(){
 
       var settingsBeer = {
         async: true,
         crossDomain: true,
-        url: "http://localhost:3000/beers/101",
+        url: "http://localhost:3000/beers",
         method: "GET",
         headers: {
           "authorization": "Bearer " + token
@@ -59,6 +127,71 @@
       }
 
       $.ajax(settingsBeer).done(function (response) {
+        console.log(response);
+        $('#info').append(response + "\n")
+      });
+    })
+
+    $('#addBeer').on('click', function(){
+      var name = $('#beerName')[0].value;
+
+      var settings = {
+        async: true,
+        crossDomain: true,
+        url: "http://localhost:3000/beers",
+        method: "POST",
+        data: '{"beer": {"name": "' + name + '"}}',
+        headers: {
+          "authorization": "Bearer " + token,
+          "content-type": "application/json",
+          "cache-control": "no-cache"
+        },
+        error: function(e){console.log(e.responseText)}
+      }
+
+      $.ajax(settings).done(function (response) {
+        console.log(response);
+        $('#info').append(response + "\n")
+      });
+    })
+
+    $('#updateBeer').on('click', function(){
+      var name = $('#beerName')[0].value;
+      var settings = {
+        async: true,
+        crossDomain: true,
+        url: "http://localhost:3000/beers/" + name,
+        method: "PUT",
+        data: '{"beer": {"style": "Coolness"}}',
+        headers: {
+          "authorization": "Bearer " + token,
+          "content-type": "application/json",
+          "cache-control": "no-cache"
+        },
+        error: function(e){console.log(e.responseText)}
+      }
+
+      $.ajax(settings).done(function (response) {
+        console.log(response);
+        $('#info').append(response + "\n")
+      });
+    })
+    $('#deleteBeer').on('click', function(){
+      var name = $('#beerName')[0].value;
+      var settings = {
+        async: true,
+        crossDomain: true,
+        url: "http://localhost:3000/beers/" + name,
+        method: "DELETE",
+        headers: {
+          "authorization": "Bearer " + token,
+          "content-type": "application/json",
+          "cache-control": "no-cache"
+        },
+        error: function(e){console.log(e.responseText)}
+      }
+
+      $.ajax(settings).done(function (response) {
         console.log(response);
         $('#info').append(response + "\n")
       });

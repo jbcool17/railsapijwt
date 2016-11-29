@@ -36,7 +36,10 @@ class BeersController < ApplicationController
 
   # DELETE /beers/1
   def destroy
+
     @beer.destroy
+
+    render json: {status: 'Beer Deleted!'}
   end
 
   private
@@ -46,7 +49,10 @@ class BeersController < ApplicationController
     end
 
     # Only allow a trusted parameter "white list" through.
+    # def beer_params
+    #   params.fetch(:beer, {})
+    # end
     def beer_params
-      params.fetch(:beer, {})
-    end
+    params.require(:beer).permit(:name, :style, :alcohol)
+  end
 end
