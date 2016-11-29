@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+  <h1>Testing API</h1>
+  <input type="text" value='user@user.com' id="email" placeholder="Enter Email">
+  <input type="text" value='duck' id="password" placeholder="Enter Pass">
+  <button id="login">Login</button>
+  <button id="beer">Beer</button>
+
+  <p id="info"></p>
+
+  <script>
+  var token = ''
+
+    $('#login').on('click', function(){
+      var email = $('#email')[0].value
+      var password = $('#password')[0].value
+
+      var settingsLogin = {
+        async: true,
+        crossDomain: true,
+        url: "http://localhost:3000/users/login",
+        method: "POST",
+        data: '{"email": "' + email +'", "password": "' + password + '"}',
+        headers: {
+          "content-type": "application/json",
+          "cache-control": "no-cache"
+        },
+        error: function(e){console.log(e.responseText)}
+      }
+
+      $.ajax(settingsLogin).done(function (response) {
+        console.log(response);
+
+        $('#info').append(response['auth_token'])
+        token = response['auth_token'];
+      });
+
+    })
+
+    $('#beer').on('click', function(){
+
+      var settingsBeer = {
+        async: true,
+        crossDomain: true,
+        url: "http://localhost:3000/beers/101",
+        method: "GET",
+        headers: {
+          "authorization": "Bearer " + token
+        }
+      }
+
+      $.ajax(settingsBeer).done(function (response) {
+        console.log(response);
+        $('#info').append(response + "\n")
+      });
+    })
+  </script>
+</body>
+</html>
