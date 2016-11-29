@@ -7,6 +7,9 @@
   src="https://code.jquery.com/jquery-3.1.1.min.js"
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   crossorigin="anonymous"></script>
+  <style>
+    li:hover {background: green;}
+  </style>
 </head>
 <body>
   <h1>Testing API</h1>
@@ -28,7 +31,7 @@
   </div>
 
 
-  <p id="info"></p>
+  <ul id="info"></ul>
 
   <script>
   $('#confirm').hide();
@@ -85,8 +88,6 @@
 
 //--------------------------------
   // LOGIN
-  var token = ''
-
     $('#login').on('click', function(){
       var email = $('#email')[0].value
       var password = $('#password')[0].value
@@ -106,8 +107,8 @@
 
       $.ajax(settingsLogin).done(function (response) {
         console.log(response);
-
-        $('#info').append(response['auth_token'])
+        localStorage.setItem('id_token', response['auth_token'])
+        $('#info').append("User is Logged in and token is set.")
         token = response['auth_token'];
       });
 
@@ -122,13 +123,16 @@
         url: "http://localhost:3000/beers",
         method: "GET",
         headers: {
-          "authorization": "Bearer " + token
+          "authorization": "Bearer " + localStorage.getItem('id_token')
         }
       }
 
       $.ajax(settingsBeer).done(function (response) {
-        console.log(response);
-        $('#info').append(response + "\n")
+        response.forEach(function(b){
+          // console.log(b)
+          $('#info').append("<li id=" + b.id + "> " + b.name +" | " + b.style + "</li>")
+        })
+
       });
     })
 
@@ -142,7 +146,7 @@
         method: "POST",
         data: '{"beer": {"name": "' + name + '"}}',
         headers: {
-          "authorization": "Bearer " + token,
+          "authorization": "Bearer " + localStorage.getItem('id_token'),
           "content-type": "application/json",
           "cache-control": "no-cache"
         },
@@ -164,7 +168,7 @@
         method: "PUT",
         data: '{"beer": {"style": "Coolness"}}',
         headers: {
-          "authorization": "Bearer " + token,
+          "authorization": "Bearer " + localStorage.getItem('id_token'),
           "content-type": "application/json",
           "cache-control": "no-cache"
         },
@@ -184,7 +188,7 @@
         url: "http://localhost:3000/beers/" + name,
         method: "DELETE",
         headers: {
-          "authorization": "Bearer " + token,
+          "authorization": "Bearer " + localStorage.getItem('id_token'),
           "content-type": "application/json",
           "cache-control": "no-cache"
         },
@@ -195,6 +199,28 @@
         console.log(response);
         $('#info').append(response + "\n")
       });
+    })
+
+    $('#info').on('click', function(e){
+      var name = e.target.id;
+      var settings = {
+        async: true,
+        crossDomain: true,
+        url: "http://localhost:3000/beers/" + name,
+        method: "DELETE",
+        headers: {
+          "authorization": "Bearer " + localStorage.getItem('id_token'),
+          "content-type": "application/json",
+          "cache-control": "no-cache"
+        },
+        error: function(e){console.log(e.responseText)}
+      }
+
+      $.ajax(settings).done(function (response) {
+        console.log(response);
+        $('#' + name).remove();
+      });
+
     })
   </script>
 </body>
