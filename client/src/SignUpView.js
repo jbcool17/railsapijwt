@@ -2,6 +2,7 @@ import React from 'react';
 import $ from 'jquery';
 // import './App.css';
 
+var url = 'http://localhost:3000';
 
 var SignUpView = React.createClass({
   getInitialState: function() {
@@ -25,7 +26,7 @@ var SignUpView = React.createClass({
 
       $.ajax({
         async: true,crossDomain: true,
-        url: "http://localhost:3000/users",method: "POST",
+        url: url + "/users",method: "POST",
         data: data,
         headers: {
           "content-type": "application/json",

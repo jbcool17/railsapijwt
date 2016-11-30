@@ -1,6 +1,6 @@
 module Api::V1
   class BeersController < ApiController
-    # before_action :authenticate_request!, :except => [:search]
+    before_action :authenticate_request!, :except => [:search]
     before_action :set_beer, only: [:show, :update, :destroy]
     before_action :set_beer_by_name, only: :search
 

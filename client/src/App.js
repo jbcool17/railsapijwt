@@ -1,10 +1,11 @@
 import React from 'react';
-// import $ from 'jquery';
 import logo from './logo.svg';
 import './App.css';
 import SignUpView from './SignUpView';
 import LoginView from './LoginView';
 import BeerView from './BeerView';
+
+// var url = 'http://localhost:3000/v1';
 
 var App = React.createClass({
   render: function() {

@@ -2,6 +2,7 @@ import React from 'react';
 import $ from 'jquery';
 // import './App.css';
 
+var url = 'http://localhost:3000';
 
 var LoginView = React.createClass({
   getInitialState: function() {
@@ -18,16 +19,15 @@ var LoginView = React.createClass({
         password = document.getElementById('loginPassword').value,
         data = JSON.stringify({email: email, password: password});
 
-      $.ajax({
-        async: true,crossDomain: true,
-        url: "http://localhost:3000/users/login",method: "POST",
+      $.ajax({async: true,crossDomain: true,
+        url: url + "/users/login",method: "POST",
         data: data,
         headers: {
           "content-type": "application/json",
           "cache-control": "no-cache"
         },
         success: function(response) {
-          console.log((response))
+          console.log((response));
           localStorage.setItem('id_token', response['auth_token'])
           localStorage.setItem('currentUser', email)
           this.setState({currentUser: email});
