@@ -1,6 +1,4 @@
 import React from 'react';
-import $ from 'jquery';
-// import './App.css';
 
 var url = 'http://localhost:3000';
 
@@ -13,53 +11,45 @@ var SignUpView = React.createClass({
 
   },
   handleSignUpClick: function(e){
-    console.log(e.target.id);
-
-    console.log("Email: " + document.getElementById('email').value)
-    console.log("Password: " + document.getElementById('password').value)
-    console.log("passwordConfirmation: " + document.getElementById('passwordConfirmation').value)
 
     var email = document.getElementById('email').value,
         password = document.getElementById('password').value,
         passwordConfirmation = document.getElementById('passwordConfirmation').value,
-        data = JSON.stringify({user: {email: email, password: password, passwordConfirmation: passwordConfirmation}});
+        data = JSON.stringify({user: {email: email, password: password, passwordConfirmation: passwordConfirmation}}),
+        config = {method: "POST",body: data,
+                  headers: {
+                    "content-type": "application/json",
+                    "cache-control": "no-cache"
+                  }};
 
-      $.ajax({
-        async: true,crossDomain: true,
-        url: url + "/users",method: "POST",
-        data: data,
-        headers: {
-          "content-type": "application/json",
-          "cache-control": "no-cache"
-        },
-        success: function(response) {
-          this.setState({confirmLink: response['confirm_link'],
-                          info: "ComfirmLink Set! - Ready to Confirm!"})
-        }.bind(this),
-        error: function(e){console.log(e.responseText)}
-      });
+    fetch(url + "/users", config).then(function(response){
+      return response.json();
+    }).then(function(j){
+      console.log((j));
+      this.setState({confirmLink: j['confirm_link'],
+                    info: "ComfirmLink Set! - Ready to Confirm!"})
+
+    }.bind(this)).catch(function(error){
+      console.log(error);
+    });
 
   },
   handleConfirmClick: function(e){
-    console.log(e.target.id);
+    console.log("Confirming...");
 
-        $.ajax({
-          "async": true,
-          "crossDomain": true,
-          "url": this.state.confirmLink,
-          "method": "POST",
-          "headers": {
-            "cache-control": "no-cache"
-          },
-          success: function(response) {
+    var config = {method: "POST",headers: {"cache-control": "no-cache"}};
 
-            console.log("confirm run: ")
-            console.log(response);
-            this.setState({info: 'Email Has Been Confirmed!'})
+    fetch(this.state.confirmLink, config).then(function(response){
+      return response.json();
+    }).then(function(j){
 
-          }.bind(this),
-          error: function(e){console.log(e.responseText)}
-        });
+      console.log("confirm run: ")
+      console.log(j);
+      this.setState({info: 'Email Has Been Confirmed!'});
+
+    }.bind(this)).catch(function(error){
+      console.log(error);
+    });
 
   },
   render: function() {

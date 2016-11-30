@@ -1,5 +1,4 @@
 import React from 'react';
-import $ from 'jquery';
 // import './App.css';
 
 var url = 'http://localhost:3000';
@@ -16,24 +15,24 @@ var LoginView = React.createClass({
     console.log("Password: " + document.getElementById('loginPassword').value)
 
      var email = document.getElementById('loginEmail').value,
-        password = document.getElementById('loginPassword').value,
-        data = JSON.stringify({email: email, password: password});
+         password = document.getElementById('loginPassword').value,
+         data = JSON.stringify({email: email, password: password}),
+         config = {method: "POST",body: data,
+                  headers: {
+                    "content-type": "application/json",
+                    "cache-control": "no-cache"
+                  }};
 
-      $.ajax({async: true,crossDomain: true,
-        url: url + "/users/login",method: "POST",
-        data: data,
-        headers: {
-          "content-type": "application/json",
-          "cache-control": "no-cache"
-        },
-        success: function(response) {
-          console.log((response));
-          localStorage.setItem('id_token', response['auth_token'])
-          localStorage.setItem('currentUser', email)
-          this.setState({currentUser: email});
-        }.bind(this),
-        error: function(e){console.log(e.responseText)}
-      });
+    fetch(url + "/users/login", config).then(function(response){
+      return response.json();
+    }).then(function(j){
+      console.log((j));
+      localStorage.setItem('id_token', j['auth_token'])
+      localStorage.setItem('currentUser', email)
+      this.setState({currentUser: email});
+    }.bind(this)).catch(function(error){
+      console.log(error);
+    });
   },
   handleLogOut: function(){
     localStorage.removeItem('id_token')

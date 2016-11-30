@@ -13,13 +13,10 @@ var BeerView = React.createClass({
   getAllBeer: function(e){
     console.log("Getting all beer.");
 
-      fetch("http://localhost:3000/v1/beers", {
+      fetch(url + "/beers", {
         method: 'GET',
-        headers: {
-          "authorization": "Bearer " + localStorage.getItem('id_token')
-        }
+        headers: {"authorization": "Bearer " + localStorage.getItem('id_token')}
       }).then( function(response){
-
         return response.json()
       }).then( function(j){
           var beers = [];
@@ -33,7 +30,9 @@ var BeerView = React.createClass({
           }
 
           this.setState({beer: beers})
-        }.bind(this));
+        }.bind(this)).catch(function(error) {
+          console.log(error);
+      });;
   },
   lookupBeer: function(e){
     var name = document.getElementById('beerName').value
@@ -55,42 +54,39 @@ var BeerView = React.createClass({
   },
   showBeer: function(e){
     console.log(e.target.parentNode.id)
-    var id = e.target.parentNode.id;
+    var id = e.target.parentNode.id,
+        config = {method: "GET",headers: {"authorization": "Bearer " + localStorage.getItem('id_token')}}
 
-    $.ajax({async: true,crossDomain: true,
-        url: url + "/beers/" + id,
-        method: "GET",
-        headers: {
-          "authorization": "Bearer " + localStorage.getItem('id_token')
-        },
-        success: function(response){
-          console.log(response);
-          this.setState({beer: [response]})
+    fetch(url + "/beers/" + id, config).then(function(response){
+      return response.json();
+    }).then(function(j){
+      this.setState({beer: [j]})
+    }.bind(this)).catch(function(error){
+      console.log(error);
+    });
 
-        }.bind(this),
-        error: function(e){console.log(e.responseText)}
-      });
   },
   deleteBeer:function(e){
     console.log(e.target.parentNode.id)
-    var id = e.target.parentNode.id;
-        $.ajax({async: true,crossDomain: true,
-          url: url + "/beers/" + id,
-          method: "DELETE",
-          headers: {
+    var id = e.target.parentNode.id,
+        config = {method: "DELETE",headers: {
             "authorization": "Bearer " + localStorage.getItem('id_token'),
             "content-type": "application/json",
             "cache-control": "no-cache"
-          },
-          success: function(response){
-            console.log(response);
-            $('#'+ id).remove();
-          },
-          error: function(e){console.log(e.responseText)}
-      });
+          }};
+
+    fetch(url + "/beers/" + id, config).then(function(response){
+      return response.json();
+    }).then(function(j){
+      console.log(j);
+      $('#'+ id).remove();
+    }).catch(function(error){
+      console.log(error);
+    });
+
   },
   updateBeer:function(e){
-    console.log(e.target.parentNode.id)
+    console.log("Update Beer: NEED TO BE SET" + e.target.parentNode.id)
   },
   render: function() {
     var deleteBeer = this.deleteBeer,
