@@ -9,7 +9,7 @@ var LoginView = React.createClass({
       currentUser: localStorage.getItem('currentUser')
     }
   },
-  handleClick: function(e){
+  handleLogIn: function(e){
     console.log(e.target.id);
     console.log("Email: " + document.getElementById('loginEmail').value)
     console.log("Password: " + document.getElementById('loginPassword').value)
@@ -35,6 +35,11 @@ var LoginView = React.createClass({
         error: function(e){console.log(e.responseText)}
       });
   },
+  handleLogOut: function(){
+    localStorage.removeItem('id_token')
+    localStorage.setItem('currentUser', 'No User Logged In')
+    this.setState({currentUser: 'No User Logged In'});
+  },
   render: function() {
     return (
       <div className="LoginView">
@@ -42,7 +47,8 @@ var LoginView = React.createClass({
       <p>Current User: {this.state.currentUser}</p>
         <input type="text" id="loginEmail" placeholder="Enter Email"/>
         <input type="text" id="loginPassword" placeholder="Enter Pass"/>
-        <button onClick={this.handleClick} id="login">Log In</button>
+        <button onClick={this.handleLogIn} id="login">Log In</button>
+        <button onClick={this.handleLogOut} id="login">Log Out</button>
       </div>
     );
   }

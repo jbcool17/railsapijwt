@@ -2,13 +2,14 @@ import React from 'react';
 import $ from 'jquery';
 // import update from 'react-addons-update'; // ES6
 import './Beer.css';
+import BeerItemView from './BeerItemView';
 
 
 var BeerView = React.createClass({
   getInitialState: function() {
     return {beer: []}
   },
-  getAllClick: function(e){
+  getAllBeer: function(e){
     console.log(e.target.id);
 
       $.ajax({
@@ -49,21 +50,51 @@ var BeerView = React.createClass({
         error: function(e){console.log(e.responseText)}
       });
   },
+  deleteBeer:function(e){
+    console.log(e.target.parentNode.id)
+    var id = e.target.parentNode.id;
+        $.ajax({
+          async: true,
+          crossDomain: true,
+          url: "http://localhost:3000/beers/" + id,
+          method: "DELETE",
+          headers: {
+            "authorization": "Bearer " + localStorage.getItem('id_token'),
+            "content-type": "application/json",
+            "cache-control": "no-cache"
+          },
+          success: function(response){
+            console.log(response);
+            $('#'+ id).remove();
+          },
+          error: function(e){console.log(e.responseText)}
+      });
+  },
+  updateBeer:function(e){
+    console.log(e.target.parentNode.id)
+  },
   render: function() {
+    var deleteBeer = this.deleteBeer,
+        updateBeer = this.updateBeer;
     var beerNodes = this.state.beer.map(function(b){
-      return (<li key={b.id} id={b.id}>{b.name} | {b.style}</li>)
+      return (<BeerItemView
+                key={b.id}
+                beerId={b.id}
+                beerName={b.name}
+                deleteBeer={deleteBeer}
+                updateBeer={updateBeer}
+        />)
     })
 
     return (
       <div className="BeerView">
       <h3>Beer</h3>
         <input type="text" id="beerName" placeholder="Enter Beer Name"/>
-        <button onClick={this.getAllClick} id="beer">Get All Beer</button>
+        <button onClick={this.getAllBeer} id="beer">Get All Beer</button>
         <button onClick={this.lookupBeer} id="lookupBeer">Look Up Beer</button>
         <button id="addBeer">Add Beer</button>
-        <button id="updateBeer">Update Beer</button>
-        <button id="deleteBeer">Delete Beer</button>
-        <ul className="BeerDump" onClick={this.lookupBeer}>{beerNodes}</ul>
+        <h3>List</h3>
+        <ul className="BeerDump">{beerNodes}</ul>
       </div>
     );
   }

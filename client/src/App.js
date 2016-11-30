@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
+// import $ from 'jquery';
 import logo from './logo.svg';
 import './App.css';
 import SignUpView from './SignUpView';
 import LoginView from './LoginView';
 import BeerView from './BeerView';
 
-class App extends Component {
-  render() {
+var App = React.createClass({
+  render: function() {
     return (
       <div className="App">
         <div className="App-header">
@@ -21,6 +22,6 @@ class App extends Component {
       </div>
     );
   }
-}
+})
 
 export default App;
