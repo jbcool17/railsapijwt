@@ -1,24 +1,11 @@
-# README
+# RAILS API w/ JS Front End(React)
+- Using JWT
+- react in client folder
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+```
+# start up
+foreman start
+```
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+If you get CORS errors check which ports you are using and update application.rb accordingly.

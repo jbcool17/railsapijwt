@@ -1,6 +1,7 @@
 class BeersController < ApplicationController
   before_action :authenticate_request!
   before_action :set_beer, only: [:show, :update, :destroy]
+  before_action :set_beer_by_name, only: :search
 
   # GET /beers
   def index
@@ -11,6 +12,10 @@ class BeersController < ApplicationController
 
   # GET /beers/1
   def show
+    render json: @beer
+  end
+
+  def search
     render json: @beer
   end
 
@@ -48,6 +53,9 @@ class BeersController < ApplicationController
       @beer = Beer.find(params[:id])
     end
 
+    def set_beer_by_name
+      @beer = Beer.find_by(name: params[:name])
+    end
     # Only allow a trusted parameter "white list" through.
     # def beer_params
     #   params.fetch(:beer, {})

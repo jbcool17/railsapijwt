@@ -13,7 +13,6 @@ class App extends Component {
           <h1>Testing API</h1>
           <img src={logo} className="App-logo" alt="logo" />
         </div>
-        <hr/>
         <SignUpView />
         <hr/>
         <LoginView />
