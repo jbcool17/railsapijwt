@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root :to => 'static#index'
+
   resources :users, only: :create do
     collection do
       post 'confirm'
