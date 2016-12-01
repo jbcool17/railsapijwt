@@ -1,19 +1,19 @@
 # RAILS API w/ JS Front End(React)
 - Using JWT
-- react in client folder
+- React Front End Started
 
 
 ```
-# React Development
-# start up
+# React Development - work done from 'client' folder
+$ cd client/ && npm install
+# Start Up
 foreman start
 ```
 
 ```
-# create production build of react site
-## Runs script
+# Create production build of react site - Runs script
 rake deploy:react_build_production
-# start dev server - react site will be at '/'
+# Start dev server - react site will be at '/'
 rails s
 ```
 
