@@ -8,8 +8,17 @@
 
 Beer.destroy_all
 
-100.times do 
-	Beer.create date: Time.now, name: Faker::Beer.name, style: Faker::Beer.style, alcohol: Faker::Beer.alcohol
+100.times do
+	Beer.create date: Time.now,
+              name: Faker::Beer.name,
+              style: Faker::Beer.style,
+              hop: Faker::Beer.hop,
+              yeast: Faker::Beer.yeast,
+              malts: Faker::Beer.malts,
+              ibu: Faker::Beer.ibu,
+              alcohol: Faker::Beer.alcohol,
+              blg: Faker::Beer.blg
+
 end
 
 puts "----------"

@@ -8,7 +8,7 @@ class ApplicationController < ActionController::API
     if !payload || !JsonWebToken.valid_payload(payload.first)
       return invalid_authentication
     end
-    byebug
+
     load_current_user!
     invalid_authentication unless @current_user
   end
