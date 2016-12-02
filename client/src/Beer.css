@@ -1,9 +1,3 @@
-ul {
-  list-style: none;
-  text-align: left;
-}
-
-
 tr:hover {
   background: lightgreen;
 }

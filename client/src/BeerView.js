@@ -8,7 +8,7 @@ var url = 'http://localhost:3000/v1';
 
 var BeerView = React.createClass({
   getInitialState: function() {
-    return {beer: []}
+    return {beer: [], beerCount: 0}
   },
   componentDidMount:function() {
     document.getElementById("thead").style.visibility = "hidden";
@@ -32,7 +32,7 @@ var BeerView = React.createClass({
                       })
           }
 
-          this.setState({beer: beers})
+          this.setState({beer: beers, beerCount: beers.length})
           document.getElementById("thead").style.visibility = "";
         }.bind(this)).catch(function(error) {
           console.log(error);
@@ -41,6 +41,12 @@ var BeerView = React.createClass({
   lookupBeer: function(e){
     var name = document.getElementById('beerName').value
     console.log("Looking Up Beer")
+
+    if (!name){
+      document.getElementById("thead").style.visibility = "hidden";
+      this.setState({beer: [], beerCount: 0})
+      return
+    }
 
     $.ajax({async: true,crossDomain: true,
         url: url + "/beers/search/" + name,
@@ -60,34 +66,35 @@ var BeerView = React.createClass({
                       })
           }
 
-          this.setState({beer: beers})
+          this.setState({beer: beers, beerCount: beers.length})
           document.getElementById("thead").style.visibility = "";
         }.bind(this),
         error: function(e){console.log(e.responseText)}
       });
   },
   showBeer: function(e){
-    console.log(e.target.parentNode.id)
-    var id = e.target.parentNode.id,
+    console.log(e.target.parentNode.parentNode.id)
+    var id = e.target.parentNode.parentNode.id,
         config = {method: "GET",headers: {"authorization": "Bearer " + localStorage.getItem('id_token')}}
 
     fetch(url + "/beers/" + id, config).then(function(response){
       return response.json();
     }).then(function(j){
-      this.setState({beer: [j]})
+      console.log(j)
+      this.setState({beer: [j],beerCount: 1})
     }.bind(this)).catch(function(error){
       console.log(error);
     });
 
   },
   deleteBeer:function(e){
-    console.log(e.target.parentNode.id)
-    var id = e.target.parentNode.id,
+    console.log(e.target.parentNode.parentNode.id)
+    var id = e.target.parentNode.parentNode.id,
         config = {method: "DELETE",headers: {
-            "authorization": "Bearer " + localStorage.getItem('id_token'),
-            "content-type": "application/json",
-            "cache-control": "no-cache"
-          }};
+                  "authorization": "Bearer " + localStorage.getItem('id_token'),
+                  "content-type": "application/json",
+                  "cache-control": "no-cache"
+                }};
 
     fetch(url + "/beers/" + id, config).then(function(response){
       return response.json();
@@ -106,6 +113,7 @@ var BeerView = React.createClass({
     var deleteBeer = this.deleteBeer,
         updateBeer = this.updateBeer,
         showBeer = this.showBeer;
+
     var beerNodes = this.state.beer.map(function(b){
       return (<BeerItemView
                 key={b.id}
@@ -116,8 +124,7 @@ var BeerView = React.createClass({
                 deleteBeer={deleteBeer}
                 updateBeer={updateBeer}
                 showBeer={showBeer}
-
-        />)
+              />)
     })
     beerNodes.unshift()
 
@@ -128,7 +135,7 @@ var BeerView = React.createClass({
         <button onClick={this.getAllBeer} id="beer">Get All Beer</button>
         <button onClick={this.lookupBeer} id="lookupBeer">Look Up Beer</button>
         <button id="addBeer">Add Beer</button>
-        <h3>List</h3>
+        <h3>List({this.state.beerCount})</h3>
         <table>
           <thead id='thead'>
             <tr>

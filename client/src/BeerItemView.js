@@ -7,8 +7,8 @@ var BeerItemView = React.createClass({
     return (
       <tr id={this.props.beerId}>
         <td>{this.props.beerName}</td>
-        <td>Style: {this.props.beerStyle}</td>
-        <td>Alcohol: {this.props.beerAlcohol}</td>
+        <td>{this.props.beerStyle}</td>
+        <td>{this.props.beerAlcohol}</td>
         <td>
           <button onClick={this.props.deleteBeer}>DeleteBeer</button>
           <button onClick={this.props.updateBeer}>UpdateBeer</button>
