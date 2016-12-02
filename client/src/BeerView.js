@@ -10,6 +10,9 @@ var BeerView = React.createClass({
   getInitialState: function() {
     return {beer: []}
   },
+  componentDidMount:function() {
+    document.getElementById("thead").style.visibility = "hidden";
+  },
   getAllBeer: function(e){
     console.log("Getting all beer.");
 
@@ -30,6 +33,7 @@ var BeerView = React.createClass({
           }
 
           this.setState({beer: beers})
+          document.getElementById("thead").style.visibility = "";
         }.bind(this)).catch(function(error) {
           console.log(error);
       });;
@@ -44,10 +48,20 @@ var BeerView = React.createClass({
         headers: {
           "authorization": "Bearer " + localStorage.getItem('id_token')
         },
-        success: function(response){
-          console.log(response);
-          this.setState({beer: [response]})
+        success: function(j){
+          console.log(j);
+          var beers = [];
 
+          for(var i = 0; i < j.length; i++){
+            beers.push({id: j[i].id,
+                        name: j[i].name,
+                        style: j[i].style,
+                        alcohol: j[i].alcohol
+                      })
+          }
+
+          this.setState({beer: beers})
+          document.getElementById("thead").style.visibility = "";
         }.bind(this),
         error: function(e){console.log(e.responseText)}
       });
@@ -105,16 +119,29 @@ var BeerView = React.createClass({
 
         />)
     })
+    beerNodes.unshift()
 
     return (
       <div className="BeerView">
       <h3>Beer</h3>
-        <input type="text" id="beerName" placeholder="Enter Beer Name"/>
+        <input onKeyUp={this.lookupBeer} type="text" id="beerName" placeholder="Enter Beer Name"/>
         <button onClick={this.getAllBeer} id="beer">Get All Beer</button>
         <button onClick={this.lookupBeer} id="lookupBeer">Look Up Beer</button>
         <button id="addBeer">Add Beer</button>
         <h3>List</h3>
-        <ul className="BeerDump">{beerNodes}</ul>
+        <table>
+          <thead id='thead'>
+            <tr>
+              <th>Name</th>
+              <th>Style</th>
+              <th>Alcohol %</th>
+              <th>Buttons</th>
+            </tr>
+          </thead>
+          <tbody>
+            {beerNodes}
+          </tbody>
+        </table>
       </div>
     );
   }
