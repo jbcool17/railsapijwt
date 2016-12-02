@@ -17,7 +17,8 @@ module Api::V1
     end
 
     def search
-      render json: @beer
+
+      render json: @beers
     end
 
     # POST /beers
@@ -55,14 +56,14 @@ module Api::V1
       end
 
       def set_beer_by_name
-        @beer = Beer.find_by(name: params[:name])
+        @beers = Beer.where("name LIKE ?", "%#{params[:name]}%")
       end
       # Only allow a trusted parameter "white list" through.
       # def beer_params
       #   params.fetch(:beer, {})
       # end
       def beer_params
-      params.require(:beer).permit(:name, :style, :alcohol)
-    end
+        params.require(:beer).permit(:name, :style, :alcohol)
+      end
   end
 end

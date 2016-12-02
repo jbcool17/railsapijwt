@@ -4,6 +4,6 @@ ul {
 }
 
 
-li:hover {
-  background: green;
+tr:hover {
+  background: lightgreen;
 }
