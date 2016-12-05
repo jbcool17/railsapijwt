@@ -4,7 +4,8 @@ import $ from 'jquery';
 import './Beer.css';
 import BeerItemView from './BeerItemView';
 
-var url = 'http://localhost:3000/v1';
+// var url = 'http://localhost:3000/v1';
+var url = window.location.hostname === 'localhost' ? 'http://localhost:3000/v1' : window.location.origin
 
 var BeerView = React.createClass({
   getInitialState: function() {

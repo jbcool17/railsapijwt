@@ -1,6 +1,6 @@
 import React from 'react';
 
-var url = 'http://localhost:3000';
+var url = window.location.hostname === 'localhost' ? 'http://localhost:3000' : window.location.origin
 
 var SignUpView = React.createClass({
   getInitialState: function() {

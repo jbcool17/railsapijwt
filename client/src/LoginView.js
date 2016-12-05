@@ -1,7 +1,7 @@
 import React from 'react';
 // import './App.css';
 
-var url = 'http://localhost:3000';
+var url = window.location.hostname === 'localhost' ? 'http://localhost:3000' : window.location.origin
 
 var LoginView = React.createClass({
   getInitialState: function() {
