@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     if user.save
       # send confirm email here - user.confirmation_token
       render json: {status: 'User created successfully',
-                    confirm_link: "http://localhost:3000/users/confirm?token=#{user.confirmation_token}"},
+                    confirm_link: "#{request.original_url}/confirm?token=#{user.confirmation_token}"},
                     status: :created
     else
       render json: { errors: user.errors.full_messages }, status: :bad_request
