@@ -31,6 +31,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rb-readline', '~> 0.5.3'
   gem 'rspec-rails'
+  gem 'factory_girl_rails'
 end
 
 group :development do
