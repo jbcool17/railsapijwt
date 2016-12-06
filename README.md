@@ -25,25 +25,25 @@ rails s
 ## Testing via React
 - You check the browser console for status messages
 
-![Step 1](https://floating-tor-40582.herokuapp.com/images/01.png)
+![Step 1](https://floating-tor-40582.herokuapp.com/images/011.png)
 
 ### Sign Up - with Email/Password/Password Confirmation
-![Step 2](https://floating-tor-40582.herokuapp.com/images/02.png)
-![Step 3](https://floating-tor-40582.herokuapp.com/images/03.png)
-![Step 4](https://floating-tor-40582.herokuapp.com/images/04.png)
+![Step 2](https://floating-tor-40582.herokuapp.com/images/021.png)
+![Step 3](https://floating-tor-40582.herokuapp.com/images/031.png)
+![Step 4](https://floating-tor-40582.herokuapp.com/images/041.png)
 - this gives you a confirmation link that would normally get sent out via email.
 
 ### Click Confirm
-![Step 5](https://floating-tor-40582.herokuapp.com/images/05.png)
+![Step 5](https://floating-tor-40582.herokuapp.com/images/051.png)
 
 ### Login - Enter credentials from above, after confirmation complete.
-![Step 6](https://floating-tor-40582.herokuapp.com/images/06.png)
+![Step 6](https://floating-tor-40582.herokuapp.com/images/061.png)
 
 ### Current user should have the email used.
-![Step 7](https://floating-tor-40582.herokuapp.com/images/07.png)
+![Step 7](https://floating-tor-40582.herokuapp.com/images/071.png)
 
 ### Click 'Get All Beer' to get data
-![Step 8](https://floating-tor-40582.herokuapp.com/images/08.png)
+![Step 8](https://floating-tor-40582.herokuapp.com/images/081.png)
 
 ## Issues
 - cannot add/update beer
