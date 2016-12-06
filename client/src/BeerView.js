@@ -100,14 +100,14 @@ var BeerView = React.createClass({
       return response.json();
     }).then(function(j){
       console.log(j);
-      $('#'+ id).remove();
+      // $('#'+ id).remove(); - NEEDS TO UPDATE STATE
     }).catch(function(error){
       console.log(error);
     });
 
   },
   updateBeer:function(e){
-    console.log("Update Beer: NEED TO BE SET" + e.target.parentNode.id)
+    console.log("Update Beer: NEEDS TO BE SET" + e.target.parentNode.id)
   },
   render: function() {
     var deleteBeer = this.deleteBeer,
