@@ -30,7 +30,7 @@ module Railsapijwt
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins ['https://floating-tor-40582.herokuapp.com/', 'http://localhost:5000']
-        resource '*', :headers => :any, :methods => [:get, :post, :delete, :options]
+        resource '*', :headers => :any, :methods => [:get, :options]
       end
     end
   end
