@@ -23,7 +23,9 @@ rails s
 - [RailsAPI-JWT](https://floating-tor-40582.herokuapp.com/react/)
 
 ## Testing via React
-- Check Browser console for messages
+- You check the browser console for status messages
+
+![Step 1](https://floating-tor-40582.herokuapp.com/images/01.png)
 
 ### Sign Up - with Email/Password/Password Confirmation
 ![Step 2](https://floating-tor-40582.herokuapp.com/images/02.png)
