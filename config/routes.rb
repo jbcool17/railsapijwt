@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       get '/beers/search/:name', to: 'beers#search'
 
       resources :standings
+      get 'standings/search/:team_name', to: 'standings#search'
     end
   end
 

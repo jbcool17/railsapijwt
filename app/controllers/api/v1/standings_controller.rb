@@ -1,6 +1,7 @@
 module Api::V1
   class StandingsController < ApiController
     before_action :set_standing, only: [:show, :update, :destroy]
+    before_action :search_standings_by_name, only: :search
 
     # GET /standings
     def index
@@ -12,6 +13,10 @@ module Api::V1
     # GET /standings/1
     def show
       render json: @standing
+    end
+
+    def search
+      render json: @standings
     end
 
     # POST /standings
@@ -43,6 +48,10 @@ module Api::V1
       # Use callbacks to share common setup or constraints between actions.
       def set_standing
         @standing = Standing.find(params[:id])
+      end
+
+      def search_standings_by_name
+        @standings = Standing.where("team_name LIKE ?", "%#{params[:team_name]}%")
       end
 
       # Only allow a trusted parameter "white list" through.
