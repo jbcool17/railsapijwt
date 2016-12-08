@@ -1,7 +1,5 @@
 require 'httparty'
 require 'nokogiri'
-require 'JSON'
-require 'csv'
 
 class Zamboni
 
