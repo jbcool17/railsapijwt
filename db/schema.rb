@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161201210506) do
+ActiveRecord::Schema.define(version: 20161208064502) do
 
   create_table "beers", force: :cascade do |t|
     t.datetime "date"
@@ -24,6 +24,24 @@ ActiveRecord::Schema.define(version: 20161201210506) do
     t.string   "malts"
     t.string   "ibu"
     t.string   "blg"
+  end
+
+  create_table "standings", force: :cascade do |t|
+    t.integer  "games"
+    t.integer  "wins"
+    t.integer  "losses"
+    t.integer  "losses_ot"
+    t.integer  "points"
+    t.integer  "points_pct"
+    t.integer  "goals"
+    t.integer  "opp_goals"
+    t.integer  "srs"
+    t.integer  "sos"
+    t.integer  "points_pct_old"
+    t.integer  "ro_wins"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "team_name"
   end
 
   create_table "users", force: :cascade do |t|
