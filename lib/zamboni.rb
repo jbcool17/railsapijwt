@@ -4,7 +4,7 @@ require 'nokogiri'
 class Zamboni
 
   def self.get_standings
-  # rails g scaffold Standings games:integer wins:integer losses:integer losses_ot:integer points:integer points_pct:integer goals:integer opp_goals:integer srs:integer sos:integer points_pct_old:integer ro_wins:integer
+    # rails g scaffold Standings games:integer wins:integer losses:integer losses_ot:integer points:integer points_pct:integer goals:integer opp_goals:integer srs:integer sos:integer points_pct_old:integer ro_wins:integer
     page = HTTParty.get('http://www.hockey-reference.com/leagues/NHL_2017_standings.html')
     parse_page = Nokogiri::HTML(page)
 
@@ -25,9 +25,9 @@ class Zamboni
     return team_data
   end
 
-    # # ------------------
-    # # EXPANDED STANDINGS
-    # # ------------------
+  # # ------------------
+  # # EXPANDED STANDINGS
+  # # ------------------
   def self.get_expanded_standings
     expanded_team_data = {}
 
@@ -49,9 +49,9 @@ class Zamboni
     return expanded_team_data
   end
 
-    # ------------------
-    # SKATERS
-    # ------------------
+  # ------------------
+  # SKATERS
+  # ------------------
   def self.get_skaters(total=5)
     page = HTTParty.get('http://www.hockey-reference.com/leagues/NHL_2017_skaters.html')
     parse_page = Nokogiri::HTML(page)

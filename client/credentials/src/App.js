@@ -5,24 +5,22 @@ import SignUpView from './SignUpView';
 import LoginView from './LoginView';
 import BeerView from './BeerView';
 
-// var url = 'http://localhost:3000/v1';
-
 var App = React.createClass({
-  render: function() {
-    return (
-      <div className="App">
+    render: function() {
+        return (
+            <div className="App">
         <div className="App-header">
           <h1>Testing API</h1>
           <img src={logo} className="App-logo" alt="logo" />
         </div>
-        <SignUpView />
+        <SignUpView/>
         <hr/>
-        <LoginView />
+        <LoginView/>
         <hr/>
-        <BeerView />
+        <BeerView/>
       </div>
-    );
-  }
+        );
+    }
 })
 
 export default App;
