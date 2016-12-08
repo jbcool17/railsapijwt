@@ -5,24 +5,30 @@
 ## Development
 ```
 # React Development - work done from 'client' folder
-# ReactSite: http://localhost:5000/
-# Rails API: http://localhost:3000/
-$ cd client/ && npm install
+$ cd client/<PROJECT> && npm install
 
+# CredentialsSite: http://localhost:5000/
+# HockeySite: http://localhost:5100/
+# Rails API: http://localhost:3000/
 # Start Up
 $ foreman start
 ```
 
 ```
 # Create production build of react site - Runs script
-$ rake deploy:react_build_production
+$ rake deploy:all_build
+$ rake deploy:credential_build
+$ rake deploy:hockey_build
 
-# Start dev server - react site will be at '/'
+# Start dev server
+# Credential site will be at '/'
+# Hockey site will be at '/hockey'
 $ rails s
 ```
 
 ## Hosting - Heroku
 - [RailsAPI-JWT](https://floating-tor-40582.herokuapp.com/react/)
+- [Hockey](https://floating-tor-40582.herokuapp.com/hockey/)
 
 ## API Only DOCS
 ### Sign Up / Confirm / Login - Get Json Web Token
