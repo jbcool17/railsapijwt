@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :standings
   root :to => 'static#index'
 
   resources :users, only: :create do
