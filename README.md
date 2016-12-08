@@ -5,9 +5,11 @@
 ## Development
 ```
 # React Development - work done from 'client' folder
-# ReactSite: http://localhost:5000/
+
+# CredentialsSite: http://localhost:5000/
+# HockeySite: http://localhost:5100/
 # Rails API: http://localhost:3000/
-$ cd client/ && npm install
+$ cd client/<PROJECT> && npm install
 
 # Start Up
 $ foreman start
@@ -15,7 +17,9 @@ $ foreman start
 
 ```
 # Create production build of react site - Runs script
-$ rake deploy:react_build_production
+$ rake deploy:all_build
+$ rake deploy:credential_build
+$ rake deploy:hockey_build
 
 # Start dev server - react site will be at '/'
 $ rails s
