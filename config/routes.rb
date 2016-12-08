@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :standings
+
   root :to => 'static#index'
 
   resources :users, only: :create do
@@ -20,6 +20,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :beers
       get '/beers/search/:name', to: 'beers#search'
+
+      resources :standings
     end
   end
 

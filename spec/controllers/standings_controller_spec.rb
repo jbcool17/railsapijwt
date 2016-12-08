@@ -52,20 +52,20 @@ RSpec.describe StandingsController, type: :controller do
     end
   end
 
-  describe "GET #new" do
-    it "assigns a new standing as @standing" do
-      get :new, params: {}, session: valid_session
-      expect(assigns(:standing)).to be_a_new(Standing)
-    end
-  end
+  # describe "GET #new" do
+  #   it "assigns a new standing as @standing" do
+  #     get :new, params: {}, session: valid_session
+  #     expect(assigns(:standing)).to be_a_new(Standing)
+  #   end
+  # end
 
-  describe "GET #edit" do
-    it "assigns the requested standing as @standing" do
-      standing = Standing.create! valid_attributes
-      get :edit, params: {id: standing.to_param}, session: valid_session
-      expect(assigns(:standing)).to eq(standing)
-    end
-  end
+  # describe "GET #edit" do
+  #   it "assigns the requested standing as @standing" do
+  #     standing = Standing.create! valid_attributes
+  #     get :edit, params: {id: standing.to_param}, session: valid_session
+  #     expect(assigns(:standing)).to eq(standing)
+  #   end
+  # end
 
   describe "POST #create" do
     context "with valid params" do
