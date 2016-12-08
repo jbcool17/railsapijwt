@@ -7,28 +7,27 @@
 # React Development - work done from 'client' folder
 $ cd client/<PROJECT> && npm install
 
-# CredentialsSite: http://localhost:5000/
-# HockeySite: http://localhost:5100/
-# Rails API: http://localhost:3000/
+# JWTCredentialsSite @ http://localhost:5000/
+# HockeySite         @ http://localhost:5100/
+# Rails API          @ http://localhost:3000/
 # Start Up
 $ foreman start
 ```
 
+## Production Deploy Notes
 ```
-# Create production build of react site - Runs script
+# Create production build of react sites - Run a script
+# Creates build and copies to /public/ folder
 $ rake deploy:all_build
 $ rake deploy:credential_build
 $ rake deploy:hockey_build
 
 # Start dev server
-# Credential site will be at '/'
-# Hockey site will be at '/hockey'
 $ rails s
 ```
 
 ## Hosting - Heroku
-- [RailsAPI-JWT](https://floating-tor-40582.herokuapp.com/react/)
-- [Hockey](https://floating-tor-40582.herokuapp.com/hockey/)
+- [RailsAPI-JWT](https://floating-tor-40582.herokuapp.com/)
 
 ## API Only DOCS
 ### Sign Up / Confirm / Login - Get Json Web Token
@@ -85,6 +84,7 @@ $ curl -X GET -H "Authorization: Bearer TOKEN" -H "Cache-Control: no-cache" "htt
 ### 5 - Click 'Get All Beer' to get data
 ![Step 8](https://floating-tor-40582.herokuapp.com/images/081.png)
 
-## Issues
+# Issues
 - cannot add/update/delete beer
 - delete beer cause React error
+- needs hockey docs
