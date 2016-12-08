@@ -21,4 +21,8 @@
 #
 
 class Standing < ApplicationRecord
+
+  def self.get_teams
+    Standing.all.select("id, team_name")
+  end
 end
