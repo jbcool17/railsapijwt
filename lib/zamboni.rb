@@ -1,7 +1,5 @@
-require 'HTTParty'
-require 'Nokogiri'
-require 'JSON'
-require 'csv'
+require 'httparty'
+require 'nokogiri'
 
 class Zamboni
 
