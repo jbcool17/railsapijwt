@@ -59,7 +59,7 @@ module Api::V1
       end
 
       def set_beers_by_name
-        @beers = Beer.where("name LIKE ?", "%#{params[:name]}%")
+        @beers = Beer.where("lower(name) LIKE ?", "%#{params[:name].downcase}%")
       end
 
       # Only allow a trusted parameter "white list" through.

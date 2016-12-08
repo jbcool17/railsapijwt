@@ -26,10 +26,14 @@ var SignUpView = React.createClass({
       return response.json();
     }).then(function(j){
       console.log((j));
-      this.setState({confirmLink: j['confirm_link'],
-                    info: "ComfirmLink Set! - Ready to Confirm!"})
-
+      if (j.errors){
+        this.setState({info: "Error Occured - Check Console!"})
+      } else {
+        this.setState({confirmLink: j['confirm_link'],
+                       info: "ComfirmLink Set! - Ready to Confirm!"})
+      }
     }.bind(this)).catch(function(error){
+      console.log("ERROR!")
       console.log(error);
     });
 

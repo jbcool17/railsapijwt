@@ -19,8 +19,7 @@ var LoginView = React.createClass({
          data = JSON.stringify({email: email, password: password}),
          config = {method: "POST",body: data,
                   headers: {
-                    "content-type": "application/json",
-                    "cache-control": "no-cache"
+                    "content-type": "application/json"
                   }};
 
     fetch(url + "/users/login", config).then(function(response){
@@ -29,7 +28,13 @@ var LoginView = React.createClass({
       console.log((j));
       localStorage.setItem('id_token', j['auth_token'])
       localStorage.setItem('currentUser', email)
-      this.setState({currentUser: email});
+
+      if (j.error){
+        this.setState({currentUser: 'Log In Error - Check Console!'});
+      } else {
+        this.setState({currentUser: email});
+      }
+
     }.bind(this)).catch(function(error){
       console.log(error);
     });

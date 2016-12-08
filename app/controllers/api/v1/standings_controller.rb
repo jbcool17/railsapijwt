@@ -51,7 +51,7 @@ module Api::V1
       end
 
       def search_standings_by_name
-        @standings = Standing.where("team_name LIKE ?", "%#{params[:team_name]}%")
+        @standings = Standing.where("lower(team_name) LIKE ?", "%#{params[:team_name].downcase}%")
       end
 
       # Only allow a trusted parameter "white list" through.
