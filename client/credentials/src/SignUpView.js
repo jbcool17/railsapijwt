@@ -44,18 +44,13 @@ var SignUpView = React.createClass({
 
     },
     handleConfirmClick: function(e) {
-        console.log("Confirming...");
-
         var config = { method: "POST", headers: { "cache-control": "no-cache" } };
 
         fetch(this.state.confirmLink, config).then(function(response) {
             return response.json();
         }).then(function(j) {
-
-            console.log("confirm run: ")
             console.log(j);
             this.setState({ info: 'Email Has Been Confirmed!' });
-
         }.bind(this)).catch(function(error) {
             console.log(error);
         });

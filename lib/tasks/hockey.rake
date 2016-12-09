@@ -19,4 +19,9 @@ namespace :hockey do
     puts "DONE!"
     puts "-----"
   end
+
+  desc "test"
+  task :test => :environment do
+    puts 'Running get hockey data test!'
+  end
 end
