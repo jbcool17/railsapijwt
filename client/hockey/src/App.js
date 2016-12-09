@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import HockeySearchView from './HockeySearchView';
 import HockeyDataView from './HockeyDataView';
 import './App.css';
@@ -62,9 +61,7 @@ class App extends Component {
         return (
             <div className="App">
               <div className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <h1>Hockey API</h1>
-
+                <h1 className='title'>Hockey API</h1>
               </div>
               <HockeySearchView onKeyUp={this.searchTeamNames}/>
               <p id="info">{this.state.info}</p>

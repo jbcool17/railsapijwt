@@ -54,8 +54,8 @@ var SignUpView = React.createClass({
         }).then(function(j) {
             console.log(j);
 
-            if (j.errors){
-              this.setState({ info: 'An Error Has Occurs - Check Console!' });
+            if (j.error || j.errors){
+              this.setState({ info: 'An Error Has Occured - Check Console!' });
             } else {
               this.setState({ info: 'Email Has Been Confirmed!' });
             }
