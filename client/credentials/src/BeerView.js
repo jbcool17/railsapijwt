@@ -13,8 +13,6 @@ var BeerView = React.createClass({
         document.getElementById("thead").style.visibility = "hidden";
     },
     getAllBeer: function(e) {
-        console.log("Getting all beer.");
-
         fetch(url + "/beers", {
             method: 'GET',
             headers: { "authorization": "Bearer " + localStorage.getItem('id_token') }
@@ -34,14 +32,13 @@ var BeerView = React.createClass({
 
             this.setState({ beer: beers, beerCount: beers.length })
             document.getElementById("thead").style.visibility = "";
-        }.bind(this)).cach(function(error) {
+        }.bind(this)).catch(function(error) {
             console.log('ERROR');
             console.log(error);
         });;
     },
     lookupBeer: function(e) {
         var name = document.getElementById('beerName').value
-        console.log("Looking Up Beer")
 
         if (!name) {
             document.getElementById("thead").style.visibility = "hidden";
@@ -71,13 +68,18 @@ var BeerView = React.createClass({
                 }
 
                 this.setState({ beer: beers, beerCount: beers.length })
+
+
+                //Show Table
                 document.getElementById("thead").style.visibility = "";
             }.bind(this),
-            error: function(e) { console.log(e.responseText) }
+            error: function(e) {
+              console.log(e.responseJSON.error)
+              this.setState({ beer: [{id: 1, name: 'Invalid | Not logged in.'}], beerCount: 0 })
+            }.bind(this)
         });
     },
     showBeer: function(e) {
-        console.log(e.target.parentNode.parentNode.id)
         var id = e.target.parentNode.parentNode.id,
             config = { method: "GET", headers: { "authorization": "Bearer " + localStorage.getItem('id_token') } }
 
@@ -92,7 +94,6 @@ var BeerView = React.createClass({
 
     },
     deleteBeer: function(e) {
-        console.log(e.target.parentNode.parentNode.id)
         var id = e.target.parentNode.parentNode.id,
             config = {
                 method: "DELETE",
@@ -115,7 +116,23 @@ var BeerView = React.createClass({
 
     },
     updateBeer: function(e) {
-        console.log("Update Beer: NEEDS TO BE SET" + e.target.parentNode.id)
+        var id = e.target.parentNode.parentNode.id,
+            config = { method: "PUT",
+                      headers: {
+                        "authorization": "Bearer " + localStorage.getItem('id_token'),
+                        "content-type": "application/json",
+                        "cache-control": "no-cache"
+                      }
+            };
+
+        fetch(url + "/beers/" + id, config).then(function(response) {
+            return response.json();
+        }).then(function(j) {
+            console.log(j);
+        }).catch(function(error) {
+            console.log('ERROR');
+            console.log(error);
+        });
     },
     render: function() {
         var deleteBeer = this.deleteBeer,

@@ -9,10 +9,6 @@ var LoginView = React.createClass({
         }
     },
     handleLogIn: function(e) {
-        console.log(e.target.id);
-        console.log("Email: " + document.getElementById('loginEmail').value)
-        console.log("Password: " + document.getElementById('loginPassword').value)
-
         var email = document.getElementById('loginEmail').value,
             password = document.getElementById('loginPassword').value,
             data = JSON.stringify({
