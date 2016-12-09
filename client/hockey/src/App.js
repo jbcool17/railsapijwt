@@ -11,21 +11,18 @@ class App extends Component {
         super(props, context);
 
         this.state = {
-            data: []
+            data: [],
+            info: ''
         };
         this.searchTeamNames = this.searchTeamNames.bind(this);
     };
     searchTeamNames(e) {
+        this.setState({info: 'Looking up teams...'})
         var teamName = e.target.value
 
         if (!teamName) {
-            this.setState({ data: [{ id: 1, team_name: "Type to Search.",
-                                      games: 'N/A',
-                                      wins: 'N/A',
-                                      losses: 'N/A',
-                                      losses_ot: 'N/A',
-                                      points: 'N/A' }]
-                          })
+            this.setState({ info: '' });
+            document.getElementById("data").style.visibility = "hidden";
             return
         }
 
@@ -48,15 +45,12 @@ class App extends Component {
             if (hockeyData.length > 0) {
                 console.log('Setting Hockey Data: ')
                 console.log(hockeyData);
-                this.setState({ data: hockeyData })
+                this.setState({ data: hockeyData, info: "Team(s) Loaded..." })
+                document.getElementById("data").style.visibility = "";
+
             } else {
-                this.setState({ data: [{ id: 1, team_name: "Team Not Found",
-                                        games: 'N/A',
-                                        wins: 'N/A',
-                                        losses: 'N/A',
-                                        losses_ot: 'N/A',
-                                        points: 'N/A'
-                               }] })
+                document.getElementById("data").style.visibility = "hidden";
+                this.setState({info: 'Not Found.'})
             }
 
         }.bind(this)).catch(function(error) {
@@ -70,8 +64,10 @@ class App extends Component {
               <div className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
                 <h1>Hockey API</h1>
+
               </div>
               <HockeySearchView onKeyUp={this.searchTeamNames}/>
+              <p id="info">{this.state.info}</p>
               <HockeyDataView data={this.state.data}/>
             </div>
         );

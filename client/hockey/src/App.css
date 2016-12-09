@@ -22,3 +22,9 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+#info {
+  background-color: lightgreen;
+  width: 300px;
+  margin: 10px auto;
+}
