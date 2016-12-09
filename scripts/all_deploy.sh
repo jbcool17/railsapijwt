@@ -1,12 +1,6 @@
 #!/bin/sh
-echo "Running Credentials Build..."
-cd client/credentials && npm run build
-echo "Starting Copy"
-cp -pvr ./build/* ../../public/credentials/
-
-echo "Running Hockey Build..."
-cd ../hockey && npm run build
-echo "Starting Copy"
-cp -pvr ./build/* ../../public/hockey/
+./scripts/credentials_deploy.sh
+./scripts/hockey_deploy.sh
+./scripts/jekyll_deploy.sh
 
 echo "DONE!"
