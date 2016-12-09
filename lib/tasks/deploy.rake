@@ -11,4 +11,8 @@ namespace :deploy do
   task :hockey_build => :environment do
     sh "scripts/hockey_deploy.sh"
   end
+  desc "jekyll_build"
+  task :jekyll_build => :environment do
+    sh "scripts/jekyll_deploy.sh"
+  end
 end
