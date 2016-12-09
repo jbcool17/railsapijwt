@@ -12,4 +12,4 @@ mv build/index_temp.html build/index.html
 echo "Starting Copy"
 cp -pvr ./build/* ../../_site_generator/credentials/
 
-echo "DONE!"
+echo "Credentials BUILD IS DONE!"

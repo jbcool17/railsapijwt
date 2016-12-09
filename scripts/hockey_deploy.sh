@@ -13,4 +13,4 @@ mv build/index_temp.html build/index.html
 echo "Starting Copy"
 cp -pvr ./build/* ../../_site_generator/hockey/
 
-echo "DONE!"
+echo "Hockey BUILD IS DONE!"
