@@ -21,6 +21,9 @@ Beer.destroy_all
 
 end
 
+
+system 'rake hockey:test'
+
 puts "----------"
 puts "DB SEEDED!"
 puts "----------"
