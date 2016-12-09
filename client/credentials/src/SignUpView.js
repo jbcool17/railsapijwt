@@ -11,11 +11,11 @@ var SignUpView = React.createClass({
 
     },
     handleSignUpClick: function(e) {
-
+        this.setState({ info: "Signing Up..." })
         var email = document.getElementById('email').value,
             password = document.getElementById('password').value,
             passwordConfirmation = document.getElementById('passwordConfirmation').value,
-            data = JSON.stringify({ user: { email: email, password: password, passwordConfirmation: passwordConfirmation } }),
+            data = JSON.stringify({ user: { email: email, password: password, password_confirmation: passwordConfirmation } }),
             config = {
                 method: "POST",
                 body: data,
@@ -29,6 +29,7 @@ var SignUpView = React.createClass({
             return response.json();
         }).then(function(j) {
             console.log((j));
+
             if (j.errors) {
                 this.setState({ info: "Error Occured - Check Console!" })
             } else {
@@ -40,20 +41,29 @@ var SignUpView = React.createClass({
         }.bind(this)).catch(function(error) {
             console.log("ERROR!")
             console.log(error);
-        });
+            this.setState({ info: "Error Occured - Check Console!" })
+        }.bind(this));
 
     },
     handleConfirmClick: function(e) {
+        this.setState({ info: "Confirming please wait..." })
         var config = { method: "POST", headers: { "cache-control": "no-cache" } };
 
         fetch(this.state.confirmLink, config).then(function(response) {
             return response.json();
         }).then(function(j) {
             console.log(j);
-            this.setState({ info: 'Email Has Been Confirmed!' });
+
+            if (j.errors){
+              this.setState({ info: 'An Error Has Occurs - Check Console!' });
+            } else {
+              this.setState({ info: 'Email Has Been Confirmed!' });
+            }
+
         }.bind(this)).catch(function(error) {
             console.log(error);
-        });
+            this.setState({ info: "Error Occured - Check Console!" })
+        }.bind(this));
 
     },
     render: function() {

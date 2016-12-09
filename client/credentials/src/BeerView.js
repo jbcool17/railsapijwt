@@ -7,12 +7,13 @@ var url = window.location.hostname === 'localhost' ? 'http://localhost:3000/v1' 
 
 var BeerView = React.createClass({
     getInitialState: function() {
-        return { beer: [], beerCount: 0 }
+        return { beer: [], beerCount: 0, info: '' }
     },
     componentDidMount: function() {
         document.getElementById("thead").style.visibility = "hidden";
     },
     getAllBeer: function(e) {
+        this.setState({info: 'Getting All Beers...'})
         fetch(url + "/beers", {
             method: 'GET',
             headers: { "authorization": "Bearer " + localStorage.getItem('id_token') }
@@ -21,28 +22,35 @@ var BeerView = React.createClass({
         }).then(function(j) {
             var beers = [];
 
-            for (var i = 0; i < j.length; i++) {
-                beers.push({
-                    id: j[i].id,
-                    name: j[i].name,
-                    style: j[i].style,
-                    alcohol: j[i].alcohol
-                })
-            }
+            if (j.error){
+              this.setState({ info: j.error })
+            } else {
+              for (var i = 0; i < j.length; i++) {
+                  beers.push({
+                      id: j[i].id,
+                      name: j[i].name,
+                      style: j[i].style,
+                      alcohol: j[i].alcohol
+                  })
+              }
+              this.setState({ beer: beers, beerCount: beers.length, info: "Beers Loaded." })
+              document.getElementById("thead").style.visibility = "";
+          }
 
-            this.setState({ beer: beers, beerCount: beers.length })
-            document.getElementById("thead").style.visibility = "";
+
+
         }.bind(this)).catch(function(error) {
             console.log('ERROR');
             console.log(error);
         });;
     },
     lookupBeer: function(e) {
+      this.setState({info: 'Looking up...'})
         var name = document.getElementById('beerName').value
 
         if (!name) {
             document.getElementById("thead").style.visibility = "hidden";
-            this.setState({ beer: [], beerCount: 0 })
+            this.setState({ beer: [], beerCount: 0, info: '' })
             return
         }
 
@@ -56,30 +64,38 @@ var BeerView = React.createClass({
             },
             success: function(j) {
                 console.log(j);
-                var beers = [];
+                var beers = [],
+                    message = '';
 
-                for (var i = 0; i < j.length; i++) {
-                    beers.push({
-                        id: j[i].id,
-                        name: j[i].name,
-                        style: j[i].style,
-                        alcohol: j[i].alcohol
-                    })
-                }
-
-                this.setState({ beer: beers, beerCount: beers.length })
-
-
-                //Show Table
+                if (!j.error || !j.errors) {
+                  for (var i = 0; i < j.length; i++) {
+                      beers.push({
+                          id: j[i].id,
+                          name: j[i].name,
+                          style: j[i].style,
+                          alcohol: j[i].alcohol
+                      })
+                  }
                 document.getElementById("thead").style.visibility = "";
+              }
+
+              if (beers.length === 0){
+                document.getElementById("thead").style.visibility = "hidden";
+                message = "No Beers Found.";
+              } else {
+                message = "Loaded."
+              }
+              this.setState({ beer: beers, beerCount: beers.length, info: message })
+
             }.bind(this),
             error: function(e) {
               console.log(e.responseJSON.error)
-              this.setState({ beer: [{id: 1, name: 'Invalid | Not logged in.'}], beerCount: 0 })
+              this.setState({ info: e.responseJSON.error })
             }.bind(this)
         });
     },
     showBeer: function(e) {
+      this.setState({info: 'Getting Beer...'})
         var id = e.target.parentNode.parentNode.id,
             config = { method: "GET", headers: { "authorization": "Bearer " + localStorage.getItem('id_token') } }
 
@@ -87,7 +103,7 @@ var BeerView = React.createClass({
             return response.json();
         }).then(function(j) {
             console.log(j)
-            this.setState({ beer: [j], beerCount: 1 })
+            this.setState({ beer: [j], beerCount: 1, info: 'Beer Loaded.' })
         }.bind(this)).catch(function(error) {
             console.log(error);
         });
@@ -159,7 +175,7 @@ var BeerView = React.createClass({
               <input onKeyUp={this.lookupBeer} type="text" id="beerName" placeholder="Enter Beer Name"/>
               <button onClick={this.lookupBeer} id="lookupBeer">Look Up Beer</button>
               <button onClick={this.getAllBeer} id="beer">Get All Beer</button>
-              <h3>List({this.state.beerCount})</h3>
+              <h3>List({this.state.beerCount}) {this.state.info}</h3>
               <table>
                 <thead id='thead'>
                   <tr>
