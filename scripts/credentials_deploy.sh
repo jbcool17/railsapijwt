@@ -13,3 +13,4 @@ echo "Starting Copy"
 cp -pvr ./build/* ../../_site_generator/credentials/
 
 echo "Credentials BUILD IS DONE!"
+echo ""

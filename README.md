@@ -1,8 +1,21 @@
 # RAILS API w/ JS Front End(React)
 - Demonstating Rails API w/JWT Authentication
-- Using Faker Gem - All beer data is randomly generated.
 
 ## Development
+```
+$ bundle
+$ rake db:create
+$ rake db:migrate
+$ rake db:seed
+$ rake hockey:get_standings
+```
+
+```
+# Static Site Generator - Jekyll - this will contain mini sites
+$ cd _site_generator && bundle
+$ jekyll serve # http://localhost:4000
+```
+
 ```
 # React Development - work done from 'client' folder
 $ cd client/<PROJECT> && npm install
@@ -17,10 +30,8 @@ $ foreman start
 ## Production Deploy Notes
 ```
 # Create production build of react sites - Run a script
-# Creates build and copies to /public/ folder
-$ rake deploy:all_build
-$ rake deploy:credential_build
-$ rake deploy:hockey_build
+# Builds & deploys all sites to public folder
+$ rake deploy:deploy_all
 
 # Start dev server
 $ rails s

@@ -6,3 +6,4 @@ jekyll build
 cp -pvr ./_site/* ../public/
 
 echo "JEKYLL BUILD IS DONE!"
+echo ""

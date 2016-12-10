@@ -14,3 +14,4 @@ echo "Starting Copy"
 cp -pvr ./build/* ../../_site_generator/hockey/
 
 echo "Hockey BUILD IS DONE!"
+echo ""
