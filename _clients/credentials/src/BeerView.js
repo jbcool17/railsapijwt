@@ -171,11 +171,11 @@ var BeerView = React.createClass({
 
         return (
             <div className="BeerView">
-              <h3>Beer</h3>
+              <h3>Beer - <span className="info">List({this.state.beerCount}) {this.state.info}</span></h3>
               <input onKeyUp={this.lookupBeer} type="text" id="beerName" placeholder="Enter Beer Name"/>
               <button onClick={this.lookupBeer} id="lookupBeer">Look Up Beer</button>
               <button onClick={this.getAllBeer} id="beer">Get All Beer</button>
-              <h3>List({this.state.beerCount}) {this.state.info}</h3>
+
               <table>
                 <thead id='thead'>
                   <tr>

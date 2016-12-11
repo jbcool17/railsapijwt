@@ -21,12 +21,6 @@
     line-height: 27px;
     letter-spacing: -1px;
     margin-bottom: 0;
-    // float: left;
-
-    &,
-    &:visited {
-        color: $navbar-text-color;
-    }
 }
 
 .site-nav {
@@ -113,11 +107,18 @@
     border-top: 1px solid forestgreen;
     padding: 5px 0;
     background-color: $footer-background;
-    color: $footer-text-color;
+    color: black;
     -webkit-box-shadow:0 -2px 3px rgba(0,0,0,.4);
     -moz-box-shadow:0 -2px 3px rgba(0,0,0,.4);
     -o-box-shadow:0 -2px 3px rgba(0,0,0,.4);
     box-shadow: 0 -2px 3px rgba(0,0,0,.4);
+
+    a {
+      color: black;
+      &:hover {
+        color: forestgreen;
+      }
+    }
 
 }
 
@@ -134,7 +135,7 @@
     margin-bottom: 0px;
     li {
         display: inline;
-        padding-right: 5px; 
+        padding-right: 5px;
     }
 }
 
@@ -147,7 +148,7 @@
 
 .footer-col {
     float: left;
-    
+
 }
 
 .footer-col-1 {
@@ -229,13 +230,13 @@
 }
 
 .post-title {
-    
+
     width: 50%;
     padding: 2px;
     font-size: 42px;
     letter-spacing: -1px;
     line-height: 1;
-    
+
     @include media-query($on-laptop) {
         font-size: 36px;
     }

@@ -8,7 +8,7 @@
 
 > demonstrating APIs &amp; Json Web Token Creation/Authentication
 
-This project uses the Rails 5 api only setting for the backend and a jekyll site generator to compile various mini sites using JS FrontEnd Frameworks(React) via custom scripts. They are currently hosted from the /public/ of the Rails Application.
+This project uses the Rails 5 api only setting for the backend and a jekyll site generator to compile various mini sites using JS FrontEnd Frameworks(React) via custom scripts. They are currently hosted from the /public/ of the Rails Application. The purpose of this is to learn about APIs and Javascript Front-End Frameworks.
 
 ## Table of Contents
 

@@ -15,7 +15,7 @@ class HockeyDataView extends Component {
         })
         return (
             <div className="HockeyDataView">
-              <h2>Hockey Data</h2>
+              <h2>Hockey Data <span className="info">{this.props.info}</span></h2>
               <ol id="data">{teamNodes}</ol>
             </div>
         );

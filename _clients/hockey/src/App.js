@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import HockeySearchView from './HockeySearchView';
 import HockeyDataView from './HockeyDataView';
-import './App.css';
 
 var url = window.location.hostname === 'localhost' ? 'http://localhost:3000/v1' : window.location.origin + '/v1'
 
@@ -16,7 +15,7 @@ class App extends Component {
         this.searchTeamNames = this.searchTeamNames.bind(this);
     };
     searchTeamNames(e) {
-        this.setState({info: 'Looking up teams...'})
+        this.setState({info: '- Looking up teams...'})
         var teamName = e.target.value
 
         if (!teamName) {
@@ -44,12 +43,12 @@ class App extends Component {
             if (hockeyData.length > 0) {
                 console.log('Setting Hockey Data: ')
                 console.log(hockeyData);
-                this.setState({ data: hockeyData, info: "Team(s) Loaded..." })
+                this.setState({ data: hockeyData, info: "- Team(s) Loaded..." })
                 document.getElementById("data").style.visibility = "";
 
             } else {
                 document.getElementById("data").style.visibility = "hidden";
-                this.setState({info: 'Not Found.'})
+                this.setState({info: '- Not Found.'})
             }
 
         }.bind(this)).catch(function(error) {
@@ -60,12 +59,11 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-              <div className="App-header">
-                <h1 className='title'>Hockey API</h1>
+              <div className='title'>
+                <h2>Hockey API</h2>
               </div>
               <HockeySearchView onKeyUp={this.searchTeamNames}/>
-              <p id="info">{this.state.info}</p>
-              <HockeyDataView data={this.state.data}/>
+              <HockeyDataView data={this.state.data} info={this.state.info}/>
             </div>
         );
     }

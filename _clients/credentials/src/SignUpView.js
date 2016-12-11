@@ -6,7 +6,7 @@ var SignUpView = React.createClass({
     getInitialState: function() {
         return {
             confirmLink: '',
-            info: ''
+            info: ':-)'
         }
 
     },
@@ -69,8 +69,7 @@ var SignUpView = React.createClass({
     render: function() {
         return (
           <div className="SignUpView">
-            <h3>Sign Up Here & Confirm</h3>
-            <p id="info">{this.state.info}</p>
+            <h3>Sign Up Here & Confirm - <span className='info'>{this.state.info}</span></h3>
             <input type="text" id="email" placeholder="Enter Email"/>
             <input type="text" id="password" placeholder="Enter Pass"/>
             <input type="text" id="passwordConfirmation" placeholder="Confirm Password"/>

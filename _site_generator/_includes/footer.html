@@ -5,40 +5,40 @@
     <div>
       <div>
         <ul class="contact-list">
-          <li>onlytheclouds.com / johnbrilla.com </li>
+          <li><a href='https://www.onlytheclouds.com/' target="_blank">onlytheclouds.com / johnbrilla.com</a> </li>
           {% if site.email %}
-            <li>   
+            <li>
               {% include icon-email.html username=site.email %}
-            </li>  
+            </li>
           {% endif %}
-            
+
           {% if site.github_username %}
             <li>
             {% include icon-github.html username=site.github_username %}
             </li>
           {% endif %}
-          
+
           {% if site.twitter_username %}
             <li>
             {% include icon-twitter.html username=site.twitter_username %}
             </li>
-          
+
           {% endif %}
-          
+
           {% if site.linkedin %}
             <li>
             {% include icon-linkedin.html username=site.linkedin %}
             </li>
-          
+
           {% endif %}
-          
+
           {% if site.pinterest %}
             <li>
             {% include icon-pinterest.html username=site.pinterest %}
             </li>
-          
+
           {% endif %}
-          
+
 
         </ul>
       </div>

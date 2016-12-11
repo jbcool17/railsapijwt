@@ -68,12 +68,10 @@ h1, h2, h3, h4, h5, h6 {
  * Links
  */
 a {
-  color: #2a7ae2;
+  color: white;
   text-decoration: none; }
-  a:visited {
-    color: #1756a9; }
   a:hover {
-    color: forestgreen;
+    color: black;
     text-decoration: none; }
 
 /**
@@ -166,8 +164,6 @@ pre {
   line-height: 27px;
   letter-spacing: -1px;
   margin-bottom: 0; }
-  .site-title, .site-title:visited {
-    color: white; }
 
 .site-nav {
   float: right;
@@ -233,6 +229,10 @@ pre {
   -moz-box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.4);
   -o-box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.4);
   box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.4); }
+  .site-footer a {
+    color: black; }
+    .site-footer a:hover {
+      color: forestgreen; }
 
 .contact-list,
 .social-media-list {
@@ -337,50 +337,46 @@ pre {
       .post-content h4 {
         font-size: 18px; } }
 
-body {
-  font-family: 'Open-Sans', sans-serif;
-  /*  font-size: 14px;*/
-  margin: 0;
-  padding: 0; }
-
 .container {
   max-width: 960px;
   margin: 0 auto; }
 
 .title {
-  background: deepskyblue; }
+  background: deepskyblue;
+  color: white; }
+  .title h2 {
+    padding: 4px; }
 
-.info {
-  margin: 0 50px 0 50px;
+.about {
   background: aliceblue;
   padding: 1px 5px; }
+  .about p {
+    margin-top: 10px;
+    margin-left: 10px; }
 
-.info p {
-  margin-top: 10px;
-  margin-left: 10px; }
+.info {
+  background: greenyellow; }
 
 /*NAV*/
 nav li {
   padding: 15px 15px 15px 0px; }
+  nav li a {
+    color: black;
+    text-decoration: none;
+    padding: 15px 15px 15px 10px; }
+  nav li a:hover {
+    background-color: cornflowerblue;
+    cursor: pointer;
+    color: black; }
 
-nav li a {
-  color: black;
-  text-decoration: none;
-  padding: 15px 15px 15px 10px; }
+.LoginView {
+  margin-top: 15px; }
 
-nav li a:hover {
-  background-color: cornflowerblue;
-  cursor: pointer;
-  color: black; }
+.BeerView {
+  margin-top: 15px; }
 
-#back {
-  text-decoration: none;
-  color: black;
-  position: absolute;
-  top: 0px; }
-
-#back:hover {
-  background-color: cornflowerblue; }
+.HockeyDataView {
+  margin-top: 15px; }
 
 /**
  * Syntax highlighting styles

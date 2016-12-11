@@ -5,7 +5,7 @@ var url = window.location.hostname === 'localhost' ? 'http://localhost:3000' : w
 var LoginView = React.createClass({
     getInitialState: function() {
         return {
-            currentUser: localStorage.getItem('currentUser')
+            currentUser: localStorage.getItem('currentUser') ? localStorage.getItem('currentUser') : 'No User Found.'
         }
     },
     handleLogIn: function(e) {
@@ -54,8 +54,7 @@ var LoginView = React.createClass({
     render: function() {
         return (
             <div className="LoginView">
-              <h3>Login Here</h3>
-              <p>Current User: {this.state.currentUser}</p>
+              <h3>Login Here - <span className='info'>{this.state.currentUser}</span></h3>
                 <input type="text" id="loginEmail" placeholder="Enter Email"/>
                 <input type="text" id="loginPassword" placeholder="Enter Pass"/>
                 <button onClick={this.handleLogIn} id="login">Log In</button>

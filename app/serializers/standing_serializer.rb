@@ -21,5 +21,5 @@
 #
 
 class StandingSerializer < ActiveModel::Serializer
-  attributes :id, :team_name, :games, :wins, :losses, :losses_ot, :points, :points_pct, :goals, :opp_goals, :srs, :sos, :points_pct_old, :ro_wins
+  attributes :id, :team_name, :games, :wins, :losses, :losses_ot, :points
 end
