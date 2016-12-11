@@ -1,4 +1,8 @@
 # RAILS API w/ JS Front End(React)
+[![Stories in Progress](https://badge.waffle.io/jbcool17/railsapijwt.svg?label=In%20Progress&title=In%20Progress)](http://waffle.io/jbcool17/railsapijwt)
+[![Stories in Ready](https://badge.waffle.io/jbcool17/railsapijwt.svg?label=ready&title=Ready)](http://waffle.io/jbcool17/railsapijwt)
+[![Stories in Done](https://badge.waffle.io/jbcool17/railsapijwt.svg?label=done&title=Done)](http://waffle.io/jbcool17/railsapijwt)
+[![Stories in Backlog](https://badge.waffle.io/jbcool17/railsapijwt.svg?label=backlog&title=backlog)](http://waffle.io/jbcool17/railsapijwt)
 - Demonstating Rails API w/JWT Authentication
 - Using Faker Gem - All beer data is randomly generated.
 
