@@ -4,8 +4,7 @@
 
 > demonstrating APIs &amp; Json Web Token Creation/Authentication
 
-This project uses a rails 5 api only setting for the backend.
-For using JS front ends I use the jekyll site generator that compiles together mini react sites and deploys them to the public folder via customs scripts.
+This project uses the Rails 5 api only setting for the backend and a jekyll site generator to compile various mini sites using JS FrontEnd Frameworks(React) via custom scripts. They are currently hosted from the /public/ of the Rails Application.
 
 ## Table of Contents
 
@@ -15,6 +14,7 @@ For using JS front ends I use the jekyll site generator that compiles together m
 - [Specs](#specs)
 - [Styles](#styles)
 - [License](#license)
+- [How To - JWT Creation / Authentication via React App](#how-to)
 
 ## Development
 - follow these instructions or run the following script:
@@ -41,7 +41,7 @@ $ cd _site_generator && bundle
 
 ```
 # React Mini Sites - work done from '_client' folder
-$ cd client/<PROJECT> && npm install
+$ cd _clients/<PROJECT> && npm install
 ```
 
 ## Usage
@@ -128,7 +128,7 @@ $ curl -X GET -H "Authorization: Bearer TOKEN" -H "Cache-Control: no-cache" "htt
 
 MIT © John Brilla
 
-
+# How To
 ## JWT Creation / Authentication via React App
 - Check the browser console for status messages
 
@@ -150,8 +150,3 @@ MIT © John Brilla
 
 ### 5 - Click 'Get All Beer' to get data
 ![Step 8](https://floating-tor-40582.herokuapp.com/images/081.png)
-
-# Issues
-- cannot add/update/delete beer
-- delete beer cause React error
-- needs hockey docs
