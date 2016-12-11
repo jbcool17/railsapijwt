@@ -17,8 +17,12 @@ For using JS front ends I use the jekyll site generator that compiles together m
 - [License](#license)
 
 ## Development
-- follow these instructions or run:
-``` ./scripts/setup_project.sh```
+- follow these instructions or run the following script:
+
+```
+# Setup Project
+./scripts/setup_project.sh
+```
 
 ```
 # Rails API Setup
