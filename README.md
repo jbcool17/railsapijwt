@@ -129,7 +129,7 @@ $ curl -X GET -H "Authorization: Bearer TOKEN" -H "Cache-Control: no-cache" "htt
 MIT © John Brilla
 
 
-## Testing via React
+## JWT Creation / Authentication via React App
 - Check the browser console for status messages
 
 ### 1 - Sign Up - with Email/Password/Password Confirmation
