@@ -1,47 +1,81 @@
-# RAILS API w/ JS Front End(React)
-- Demonstating Rails API w/JWT Authentication
+# rails-api-w-jwt
+
+[![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
+
+> demonstrating APIs &amp; Json Web Token Creation/Authentication
+
+This project uses a rails 5 api only setting for the backend.
+For using JS front ends I use the jekyll site generator that compiles together mini react sites and deploys them to the public folder via customs scripts.
+
+## Table of Contents
+
+- [Development](#development)
+- [Usage](#usage)
+- [API](#api)
+- [Specs](#specs)
+- [Styles](#styles)
+- [License](#license)
 
 ## Development
+- follow these instructions or run:
+``` ./scripts/setup_project.sh```
+
 ```
 # Rails API Setup
 $ bundle install
-$ rake db:create
 $ rake db:migrate
+
+# Populate Database
 $ rake db:seed
 $ rake hockey:get_standings
 ```
 
 ```
-# Static Site Generator - Jekyll - this will contain mini sites
+# Static Site Generator - Jekyll - this will contain the mini sites
 $ cd _site_generator && bundle
-$ jekyll serve # http://localhost:4000
 ```
 
 ```
-# React Development - work done from 'client' folder
+# React Mini Sites - work done from '_client' folder
 $ cd client/<PROJECT> && npm install
+```
 
+## Usage
+### For Development - Static Sites
+```
+# React Mini Sites - Work with Directly
 # JWTCredentialsSite @ http://localhost:5000/
 # HockeySite         @ http://localhost:5100/
 # Rails API          @ http://localhost:3000/
 # Start Up
+$ foreman start -f Procfile.react
+
+# Jekyll - Main Site - Hosting Mini Sites
+# This will build your mini sites automatically
+# http://localhost:4000
 $ foreman start
-```
 
-## Production Deploy Notes
 ```
-# Create production build of react sites - Run a script
-# Builds & deploys all sites to public folder
+### Deploy
+```
+# When ready to deploy run:
 $ rake deploy:deploy_all
-
-# Start dev server
+# View Site @ http://localhost:3000
 $ rails s
 ```
 
-## Hosting - Heroku
-- [RailsAPI-JWT](https://floating-tor-40582.herokuapp.com/)
+### Other
+```
+# Build Helpers
+rake deploy:deploy_all              # Builds & deploys all sites to public folder
+rake deploy:credentials_build       # Build credentials react site and copies to site generator
+rake deploy:hockey_build            # Build hockey api react site and copies to site generator
+rake deploy:jekyll_build            # Builds Jekyll Site and copies to public
+```
 
-## API Only DOCS
+
+## API
+
 ### Sign Up / Confirm / Login - Get Json Web Token
 ```
 # POST /users
@@ -62,7 +96,7 @@ $ curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" 
 => {"auth_token": "TOKEN"}
 ```
 
-### Get JSON
+### Beer API
 ```
 # GET /v1/beers
 $ curl -X GET -H "Authorization: Bearer TOKEN" -H "Cache-Control: no-cache" "https://floating-tor-40582.herokuapp.com/v1/beers"
@@ -73,6 +107,23 @@ $ curl -X GET -H "Authorization: Bearer TOKEN" -H "Cache-Control: no-cache" "htt
 # GET /v1/beers/search/:name
 $ curl -X GET -H "Authorization: Bearer TOKEN" -H "Cache-Control: no-cache" "https://floating-tor-40582.herokuapp.com/v1/beers/:name"
 ```
+
+### Hockey API
+- soon
+
+## Specs
+- Ruby v2.3.1 / Rails v5.0.0.1
+- JWT
+- Uses npm for js frontend
+- Database - Development / Sqlite3 - Production / Postgresql
+
+## Styles
+- styles being done in _site_generator but can also be done in react mini apps
+
+## License
+
+MIT © John Brilla
+
 
 ## Testing via React
 - Check the browser console for status messages

@@ -3,6 +3,8 @@
 echo '===> Starting RAILSAPIJWT Project setup...'
 echo '===> Setting up rails api...'
 bundle install
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -
+echo '===> Running Migrations...'
 bundle exec rake db:migrate
 
 echo ''
