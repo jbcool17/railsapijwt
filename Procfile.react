@@ -1,0 +1,3 @@
+hockey: cd _clients/hockey && npm start
+credentials: cd _clients/credentials && npm start
+api: bundle exec rails s -p 3000

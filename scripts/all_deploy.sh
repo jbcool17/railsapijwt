@@ -1,12 +1,12 @@
 #!/bin/sh
-echo "Running Credentials Build..."
-cd client/credentials && npm run build
-echo "Starting Copy"
-cp -pvr ./build/* ../../public/react/
+echo '---> Building and Deploying to public folder...'
+echo '---> CREDENTIALS SITE...'
+./scripts/credentials_deploy.sh
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -
+echo '---> HOCKEY SITE...'
+./scripts/hockey_deploy.sh
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -
+echo '---> JEKYLL SITE...'
+./scripts/jekyll_deploy.sh
 
-echo "Running Hockey Build..."
-cd ../hockey && npm run build
-echo "Starting Copy"
-cp -pvr ./build/* ../../public/hockey/
-
-echo "DONE!"
+echo "ALL DEPLOY SCRIPT IS COMPLETE!"
