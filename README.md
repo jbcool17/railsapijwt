@@ -1,35 +1,89 @@
-# RAILS API w/ JS Front End(React)
-- Demonstating Rails API w/JWT Authentication
-- Using Faker Gem - All beer data is randomly generated.
+# rails-api-w-jwt
+
+[![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
+[![Stories in Progress](https://badge.waffle.io/jbcool17/railsapijwt.svg?label=In%20Progress&title=In%20Progress)](http://waffle.io/jbcool17/railsapijwt)
+[![Stories in Ready](https://badge.waffle.io/jbcool17/railsapijwt.svg?label=ready&title=Ready)](http://waffle.io/jbcool17/railsapijwt)
+[![Stories in Done](https://badge.waffle.io/jbcool17/railsapijwt.svg?label=done&title=Done)](http://waffle.io/jbcool17/railsapijwt)
+[![Stories in Backlog](https://badge.waffle.io/jbcool17/railsapijwt.svg?label=backlog&title=backlog)](http://waffle.io/jbcool17/railsapijwt)
+
+> demonstrating APIs &amp; Json Web Token Creation/Authentication
+
+This project uses the Rails 5 api only setting for the backend and a jekyll site generator to compile various mini sites using JS FrontEnd Frameworks(React) via custom scripts. They are currently hosted from the /public/ of the Rails Application. The purpose of this is to learn about APIs and Javascript Front-End Frameworks.
+
+## Table of Contents
+
+- [Development](#development)
+- [Usage](#usage)
+- [API](#api)
+- [Specs](#specs)
+- [Styles](#styles)
+- [License](#license)
+- [How To - JWT Creation / Authentication via React App](#how-to)
 
 ## Development
-```
-# React Development - work done from 'client' folder
-$ cd client/<PROJECT> && npm install
+- follow these instructions or run the following script:
 
+```
+# Setup Project
+./scripts/setup_project.sh
+```
+
+```
+# Rails API Setup
+$ bundle install
+$ rake db:migrate
+
+# Populate Database
+$ rake db:seed
+$ rake hockey:get_standings
+```
+
+```
+# Static Site Generator - Jekyll - this will contain the mini sites
+$ cd _site_generator && bundle
+```
+
+```
+# React Mini Sites - work done from '_client' folder
+$ cd _clients/<PROJECT> && npm install
+```
+
+## Usage
+### For Development - Static Sites
+```
+# React Mini Sites - Work with Directly
 # JWTCredentialsSite @ http://localhost:5000/
 # HockeySite         @ http://localhost:5100/
 # Rails API          @ http://localhost:3000/
 # Start Up
+$ foreman start -f Procfile.react
+
+# Jekyll - Main Site - Hosting Mini Sites
+# This will build your mini sites automatically
+# http://localhost:4000
 $ foreman start
-```
 
-## Production Deploy Notes
 ```
-# Create production build of react sites - Run a script
-# Creates build and copies to /public/ folder
-$ rake deploy:all_build
-$ rake deploy:credential_build
-$ rake deploy:hockey_build
-
-# Start dev server
+### Deploy
+```
+# When ready to deploy run:
+$ rake deploy:deploy_all
+# View Site @ http://localhost:3000
 $ rails s
 ```
 
-## Hosting - Heroku
-- [RailsAPI-JWT](https://floating-tor-40582.herokuapp.com/)
+### Other
+```
+# Build Helpers
+rake deploy:deploy_all              # Builds & deploys all sites to public folder
+rake deploy:credentials_build       # Build credentials react site and copies to site generator
+rake deploy:hockey_build            # Build hockey api react site and copies to site generator
+rake deploy:jekyll_build            # Builds Jekyll Site and copies to public
+```
 
-## API Only DOCS
+
+## API
+
 ### Sign Up / Confirm / Login - Get Json Web Token
 ```
 # POST /users
@@ -50,7 +104,7 @@ $ curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" 
 => {"auth_token": "TOKEN"}
 ```
 
-### Get JSON
+### Beer API
 ```
 # GET /v1/beers
 $ curl -X GET -H "Authorization: Bearer TOKEN" -H "Cache-Control: no-cache" "https://floating-tor-40582.herokuapp.com/v1/beers"
@@ -62,7 +116,24 @@ $ curl -X GET -H "Authorization: Bearer TOKEN" -H "Cache-Control: no-cache" "htt
 $ curl -X GET -H "Authorization: Bearer TOKEN" -H "Cache-Control: no-cache" "https://floating-tor-40582.herokuapp.com/v1/beers/:name"
 ```
 
-## Testing via React
+### Hockey API
+- soon
+
+## Specs
+- Ruby v2.3.1 / Rails v5.0.0.1
+- JWT
+- Uses npm for js frontend
+- Database - Development / Sqlite3 - Production / Postgresql
+
+## Styles
+- styles being done in _site_generator but can also be done in react mini apps
+
+## License
+
+MIT © John Brilla
+
+# How To
+## JWT Creation / Authentication via React App
 - Check the browser console for status messages
 
 ### 1 - Sign Up - with Email/Password/Password Confirmation
@@ -83,8 +154,3 @@ $ curl -X GET -H "Authorization: Bearer TOKEN" -H "Cache-Control: no-cache" "htt
 
 ### 5 - Click 'Get All Beer' to get data
 ![Step 8](https://floating-tor-40582.herokuapp.com/images/081.png)
-
-# Issues
-- cannot add/update/delete beer
-- delete beer cause React error
-- needs hockey docs
