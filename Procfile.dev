@@ -1,3 +1,3 @@
 api: bundle exec rails s -p 3000
-jeykll: cd _site_generator && jekyll serve
+jekyll: cd _site_generator && jekyll serve
 guard: bundle exec guard
