@@ -68,10 +68,10 @@ h1, h2, h3, h4, h5, h6 {
  * Links
  */
 a {
-  color: white;
+  color: black;
   text-decoration: none; }
   a:hover {
-    color: black;
+    color: cornflowerblue;
     text-decoration: none; }
 
 /**
@@ -157,6 +157,12 @@ pre {
   background: deepskyblue;
   z-index: 999;
   margin-bottom: 10px; }
+  .site-header a {
+    color: white;
+    text-decoration: none; }
+    .site-header a:hover {
+      color: black;
+      text-decoration: none; }
 
 .site-title {
   font-size: 26px;
@@ -358,13 +364,13 @@ pre {
   background: greenyellow; }
 
 /*NAV*/
-nav li {
+#nav-projects li {
   padding: 15px 15px 15px 0px; }
-  nav li a {
+  #nav-projects li a {
     color: black;
     text-decoration: none;
     padding: 15px 15px 15px 10px; }
-  nav li a:hover {
+  #nav-projects li a:hover {
     background-color: cornflowerblue;
     cursor: pointer;
     color: black; }
@@ -377,6 +383,19 @@ nav li {
 
 .HockeyDataView {
   margin-top: 15px; }
+
+#hockey-table {
+  width: 100%;
+  background: lightcyan; }
+  #hockey-table thead {
+    background: deepskyblue;
+    color: white; }
+    #hockey-table thead th {
+      padding: 10px; }
+  #hockey-table #hockey-table-body tr td {
+    text-align: center; }
+  #hockey-table #hockey-table-body tr:hover {
+    background-color: cornflowerblue; }
 
 /**
  * Syntax highlighting styles

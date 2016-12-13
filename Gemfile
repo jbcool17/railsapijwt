@@ -8,14 +8,19 @@ gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 #DATABASE
 gem 'pg'
 gem 'active_model_serializers', '~> 0.10.0'
+gem 'faker'
+
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
+
+# AUTH
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
+gem 'jwt'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -23,21 +28,18 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
 
-gem 'faker'
-gem 'jwt'
-gem 'foreman'
-
 # Web Scaping
 gem 'nokogiri'
 gem 'httparty'
 
 group :development, :test do
-  gem 'sqlite3'
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'rb-readline', '~> 0.5.3'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'sqlite3'
 end
 
 group :development do
@@ -49,6 +51,7 @@ group :development do
   gem 'guard'
   gem 'guard-shell'
   gem 'guard-livereload'
+  gem 'foreman'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
