@@ -77,6 +77,10 @@
     color:white;
     th {
       padding: 10px;
+       cursor: pointer; cursor: hand;
+      &:hover{
+        background-color: skyblue;
+      }
     }
   }
   #hockey-table-body {
