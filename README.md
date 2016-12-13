@@ -61,7 +61,6 @@ $ foreman start -f Procfile.react
 # Jekyll - Main Site - Hosting Mini Sites
 # This will build your mini sites automatically
 # http://localhost:4000
-# type 'exit' to quit
 $ foreman start
 
 ```

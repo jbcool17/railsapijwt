@@ -33,7 +33,7 @@
 
 
 /*NAV*/
-nav {
+#nav-projects {
   li {
     padding: 15px 15px 15px 0px;
 
@@ -67,4 +67,27 @@ nav {
 
 .HockeyDataView {
   margin-top: 15px;
+}
+
+#hockey-table {
+  width: 100%;
+  background: lightcyan;
+  thead {
+    background: deepskyblue;
+    color:white;
+    th {
+      padding: 10px;
+    }
+  }
+  #hockey-table-body {
+    tr {
+      td {
+        text-align: center;
+      }
+
+    }
+    tr:hover {
+      background-color: cornflowerblue;
+    }
+  }
 }
