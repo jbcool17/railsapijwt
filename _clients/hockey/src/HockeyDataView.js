@@ -20,7 +20,7 @@ class HockeyDataView extends Component {
                <table id='hockey-table'>
                 <thead id='hockey-table-header' >
                   <tr>
-                    <th id='team'>Team</th>
+                    <th id='teams'onClick={this.props.hockeySort}>Team</th>
                     <th id='games' onClick={this.props.hockeySort}>Games Played</th>
                     <th id='wins' onClick={this.props.hockeySort}>Wins</th>
                     <th id='losses' onClick={this.props.hockeySort}>Losses</th>

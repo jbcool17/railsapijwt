@@ -391,7 +391,11 @@ pre {
     background: deepskyblue;
     color: white; }
     #hockey-table thead th {
-      padding: 10px; }
+      padding: 10px;
+      cursor: pointer;
+      cursor: hand; }
+      #hockey-table thead th:hover {
+        background-color: skyblue; }
   #hockey-table #hockey-table-body tr td {
     text-align: center; }
   #hockey-table #hockey-table-body tr:hover {
