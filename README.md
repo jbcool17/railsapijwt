@@ -67,7 +67,7 @@ $ foreman start
 ### Deploy
 ```
 # When ready to deploy run:
-$ rake deploy:deploy_all
+$ rake build:build_all
 # View Site @ http://localhost:3000
 $ rails s
 ```
@@ -75,10 +75,10 @@ $ rails s
 ### Other
 ```
 # Build Helpers
-rake deploy:deploy_all              # Builds & deploys all sites to public folder
-rake deploy:credentials_build       # Build credentials react site and copies to site generator
-rake deploy:hockey_build            # Build hockey api react site and copies to site generator
-rake deploy:jekyll_build            # Builds Jekyll Site and copies to public
+rake build:build_all              # Builds & deploys all sites to public folder
+rake build:credentials_build       # Build credentials react site and copies to site generator
+rake build:hockey_build            # Build hockey api react site and copies to site generator
+rake build:jekyll_build            # Builds Jekyll Site and copies to public
 ```
 
 
@@ -113,17 +113,23 @@ $ curl -X GET -H "Authorization: Bearer TOKEN" -H "Cache-Control: no-cache" "htt
 $ curl -X GET -H "Authorization: Bearer TOKEN" -H "Cache-Control: no-cache" "https://floating-tor-40582.herokuapp.com/v1/beers/:id"
 
 # GET /v1/beers/search/:name
-$ curl -X GET -H "Authorization: Bearer TOKEN" -H "Cache-Control: no-cache" "https://floating-tor-40582.herokuapp.com/v1/beers/:name"
+$ curl -X GET -H "Authorization: Bearer TOKEN" -H "Cache-Control: no-cache" "https://floating-tor-40582.herokuapp.com/v1/beers/search/:name"
 ```
 
 ### Hockey API
-- soon
+```
+# No Token Needed
+
+# GET /v1/beers/search/:name
+$ curl -X GET -H "Cache-Control: no-cache" "https://floating-tor-40582.herokuapp.com/v1/standings/search/:name"
+```
 
 ## Specs
 - Ruby v2.3.1 / Rails v5.0.0.1
 - JWT
 - Uses npm for js frontend
 - Database - Development / Sqlite3 - Production / Postgresql
+- foreman / guard
 
 ## Styles
 - styles being done in _site_generator but can also be done in react mini apps
