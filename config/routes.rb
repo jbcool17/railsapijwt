@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   root :to => 'static#index'
 
+  get '/ip', to: 'static#ip'
+
   resources :users, only: :create do
     collection do
       post 'confirm'
