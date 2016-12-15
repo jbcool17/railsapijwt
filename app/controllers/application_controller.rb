@@ -7,6 +7,7 @@ class ApplicationController < ActionController::API
   # get ip
   def tracker!
     ip_address = request.remote_ip
+
     data = Analytics::Tracker.set_info(ip_address)
 
     Tracker.create ip: ip_address,
@@ -19,7 +20,10 @@ class ApplicationController < ActionController::API
                      time_zone: data['time_zone'],
                      latitude: data['latitude'],
                      longitude: data['longitude'],
-                     metro_code: data['metro_code']
+                     metro_code: data['metro_code'],
+                     controller: params['controller'],
+                     action: params['action'],
+                     other: params.to_a.join('#')
   end
 
   # Validates the token and user and sets the @current_user scope
