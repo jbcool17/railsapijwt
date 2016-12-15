@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-
-  root :to => 'static#index'
-
   get '/tracker', to: 'static#tracker'
 
   resources :users, only: :create do
