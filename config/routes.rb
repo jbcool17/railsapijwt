@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
 
-
-  root :to => 'static#index'
-
-  get '/ip', to: 'static#ip'
+  get '/tracker', to: 'static#tracker'
 
   resources :users, only: :create do
     collection do

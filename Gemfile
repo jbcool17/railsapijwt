@@ -31,6 +31,7 @@ gem 'rack-cors'
 # Web Scaping
 gem 'nokogiri'
 gem 'httparty'
+gem 'geocoder'
 
 group :development, :test do
 
