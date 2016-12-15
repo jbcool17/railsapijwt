@@ -1,10 +1,11 @@
 class ApplicationController < ActionController::API
   require 'json_web_token'
+  require 'analytics/tracker'
 
   protected
 
   # get ip
-  def tracker
+  def tracker!
     ip_address = request.remote_ip
     data = Analytics::Tracker.set_info(ip_address)
 
