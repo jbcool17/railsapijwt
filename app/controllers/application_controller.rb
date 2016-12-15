@@ -2,6 +2,25 @@ class ApplicationController < ActionController::API
   require 'json_web_token'
 
   protected
+
+  # get ip
+  def tracker
+    ip_address = request.remote_ip
+    data = Analytics::Tracker.set_info(ip_address)
+
+    Tracker.create ip: ip_address,
+                     country_code: data['country_code'],
+                     country_name: data['country_name'],
+                     region_code: data['region_code'],
+                     region_name: data['region_name'],
+                     city: data['city'],
+                     zip_code: data['zip_code'],
+                     time_zone: data['time_zone'],
+                     latitude: data['latitude'],
+                     longitude: data['longitude'],
+                     metro_code: data['metro_code']
+  end
+
   # Validates the token and user and sets the @current_user scope
   def authenticate_request!
 

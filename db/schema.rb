@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161208064502) do
+ActiveRecord::Schema.define(version: 20161215170752) do
 
   create_table "beers", force: :cascade do |t|
     t.datetime "date"
@@ -44,6 +44,22 @@ ActiveRecord::Schema.define(version: 20161208064502) do
     t.string   "team_name"
   end
 
+  create_table "trackers", force: :cascade do |t|
+    t.string   "ip"
+    t.string   "country_code"
+    t.string   "country_name"
+    t.string   "region_code"
+    t.string   "region_name"
+    t.string   "city"
+    t.string   "zip_code"
+    t.string   "time_zone"
+    t.integer  "latitude"
+    t.integer  "longitude"
+    t.integer  "metro_code"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                null: false
     t.string   "password_digest",      null: false
@@ -52,6 +68,7 @@ ActiveRecord::Schema.define(version: 20161208064502) do
     t.datetime "confirmation_sent_at"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+    t.boolean  "admin"
   end
 
 end

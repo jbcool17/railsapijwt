@@ -1,4 +1,6 @@
 class StaticController < ApplicationController
+  before_action :tracker
+  # before_action :authenticate_request!
   # def index
   #   redirect_to '/react/'
   # end
@@ -6,8 +8,7 @@ class StaticController < ApplicationController
   # def hockey
   #   redirect_to '/hockey/'
   # end
-
-  def ip
-    render json: { remote_ip: request.remote_ip, env: request.env['HTTP_X_REAL_IP']}
+  def tracker
+    render json: Tracker.all
   end
 end

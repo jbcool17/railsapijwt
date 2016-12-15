@@ -41,4 +41,8 @@ class User < ApplicationRecord
     save
   end
 
+  def is_admin?
+    self.admin
+  end
+
 end
