@@ -69,6 +69,7 @@ GEM
       thor (~> 0.19.1)
     formatador (0.2.5)
     forwardable-extended (2.6.0)
+    geocoder (1.4.1)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     guard (2.14.0)
@@ -232,6 +233,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   foreman
+  geocoder
   guard
   guard-livereload
   guard-shell

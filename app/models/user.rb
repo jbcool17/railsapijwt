@@ -10,6 +10,7 @@
 #  confirmation_sent_at :datetime
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
+#  admin                :boolean
 #
 
 class User < ApplicationRecord
@@ -39,6 +40,10 @@ class User < ApplicationRecord
     self.confirmation_token = nil
     self.confirmed_at = Time.now.utc
     save
+  end
+
+  def is_admin?
+    self.admin
   end
 
 end
