@@ -21,8 +21,6 @@ class ApplicationController < ActionController::API
                      latitude: data['latitude'],
                      longitude: data['longitude'],
                      metro_code: data['metro_code'],
-                     controller: params['controller'],
-                     action: params['action'],
                      other: params.to_a.join('#')
   end
 
