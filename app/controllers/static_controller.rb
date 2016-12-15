@@ -1,9 +1,10 @@
 class StaticController < ApplicationController
-  # def index
-  #   redirect_to '/react/'
-  # end
+  include ActionController::HttpAuthentication::Basic::ControllerMethods
 
-  # def hockey
-  #   redirect_to '/hockey/'
-  # end
+  before_action :tracker!
+  http_basic_authenticate_with name: ENV['TRACKER_USER'], password: ENV['TRACKER_PASS']
+
+  def tracker
+    render json: Tracker.all
+  end
 end
