@@ -1,5 +1,5 @@
 class StaticController < ApplicationController
-  before_action :tracker
+  before_action :tracker!
   # before_action :authenticate_request!
   # def index
   #   redirect_to '/react/'
