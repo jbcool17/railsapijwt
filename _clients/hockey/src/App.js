@@ -35,17 +35,17 @@ class App extends Component {
 
         fetch(url + "/standings/search/" + teamName, { method: 'GET' }).then(function(response) {
             return response.json()
-        }).then(function(j) {
+        }).then(function(json) {
+            var data = json.data,
+                hockeyData = [];
 
-            var hockeyData = [];
-
-            for (var i = 0; i < j.length; i++) {
-                hockeyData.push({ id: j[i].id, team_name: j[i].team_name,
-                                  games: j[i].games,
-                                  wins: j[i].wins,
-                                  losses: j[i].losses,
-                                  losses_ot: j[i].losses_ot,
-                                  points: j[i].points
+            for (var i = 0; i < data.length; i++) {
+                hockeyData.push({ id: data[i].id, team_name: data[i].attributes['team-name'],
+                                  games: data[i].attributes.games,
+                                  wins: data[i].attributes.wins,
+                                  losses: data[i].attributes.losses,
+                                  losses_ot: data[i].attributes['losses-ot'],
+                                  points: data[i].attributes.points
                                })
             }
 
