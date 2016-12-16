@@ -15,13 +15,13 @@ class ApplicationController < ActionController::API
                      country_name: data['country_name'],
                      region_code: data['region_code'],
                      region_name: data['region_name'],
-                     city: data['city'],
+                     city: data['city'] || 'test',
                      zip_code: data['zip_code'],
                      time_zone: data['time_zone'],
-                     latitude: data['latitude'],
-                     longitude: data['longitude'],
-                     metro_code: data['metro_code'],
-                     other: params.to_a.join('#')
+                     latitude: data['latitude'].to_i,
+                     longitude: data['longitude'].to_i,
+                     metro_code: data['metro_code'].to_i,
+                     other: params.to_json
   end
 
   # Validates the token and user and sets the @current_user scope
