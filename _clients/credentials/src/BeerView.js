@@ -19,8 +19,9 @@ var BeerView = React.createClass({
             headers: { "authorization": "Bearer " + localStorage.getItem('id_token') }
         }).then(function(response) {
             return response.json()
-        }).then(function(j) {
-            var beers = [];
+        }).then(function(json) {
+            var j = json.data,
+                beers = [];
 
             if (j.error){
               this.setState({ info: j.error })
@@ -28,9 +29,9 @@ var BeerView = React.createClass({
               for (var i = 0; i < j.length; i++) {
                   beers.push({
                       id: j[i].id,
-                      name: j[i].name,
-                      style: j[i].style,
-                      alcohol: j[i].alcohol
+                      name: j[i].attributes.name,
+                      style: j[i].attributes.style,
+                      alcohol: j[i].attributes.alcohol
                   })
               }
               this.setState({ beer: beers, beerCount: beers.length, info: "Beers Loaded." })
@@ -62,8 +63,10 @@ var BeerView = React.createClass({
             headers: {
                 "authorization": "Bearer " + localStorage.getItem('id_token')
             },
-            success: function(j) {
+            success: function(json) {
+                var j = json.data;
                 console.log(j);
+
                 var beers = [],
                     message = '';
 
@@ -71,21 +74,21 @@ var BeerView = React.createClass({
                   for (var i = 0; i < j.length; i++) {
                       beers.push({
                           id: j[i].id,
-                          name: j[i].name,
-                          style: j[i].style,
-                          alcohol: j[i].alcohol
+                          name: j[i].attributes.name,
+                          style: j[i].attributes.style,
+                          alcohol: j[i].attributes.alcohol
                       })
                   }
-                document.getElementById("thead").style.visibility = "";
-              }
+                  document.getElementById("thead").style.visibility = "";
+                }
 
-              if (beers.length === 0){
-                document.getElementById("thead").style.visibility = "hidden";
-                message = "No Beers Found.";
-              } else {
-                message = "Loaded."
-              }
-              this.setState({ beer: beers, beerCount: beers.length, info: message })
+                if (beers.length === 0){
+                  document.getElementById("thead").style.visibility = "hidden";
+                  message = "No Beers Found.";
+                } else {
+                  message = "Loaded."
+                }
+                this.setState({ beer: beers, beerCount: beers.length, info: message })
 
             }.bind(this),
             error: function(e) {
@@ -101,10 +104,13 @@ var BeerView = React.createClass({
 
         fetch(url + "/beers/" + id, config).then(function(response) {
             return response.json();
-        }).then(function(j) {
+        }).then(function(json) {
+            var j = json.data;
             console.log(j)
-            this.setState({ beer: [j], beerCount: 1, info: 'Beer Loaded.' })
+            this.setState({ beer: [{id: j.id, name: j.attributes.name, style: j.attributes.style, alcohol: j.attributes.alcohol}],
+                            beerCount: 1, info: 'Beer Loaded.' })
         }.bind(this)).catch(function(error) {
+            console.log('ERROR');
             console.log(error);
         });
 
@@ -125,6 +131,7 @@ var BeerView = React.createClass({
         }).then(function(j) {
             console.log(j);
             // $('#'+ id).remove(); - NEEDS TO UPDATE STATE
+            this.setState({ info: e.responseJSON.error })
         }).catch(function(error) {
             console.log('ERROR');
             console.log(error);
@@ -151,19 +158,14 @@ var BeerView = React.createClass({
         });
     },
     render: function() {
-        var deleteBeer = this.deleteBeer,
-            updateBeer = this.updateBeer,
-            showBeer = this.showBeer;
-
-        var beerNodes = this.state.beer.map(function(b) {
+        var showBeer = this.showBeer,
+            beerNodes = this.state.beer.map(function(b) {
             return (<BeerItemView
                 key={b.id}
                 beerId={b.id}
                 beerName={b.name}
                 beerStyle={b.style}
                 beerAlcohol={b.alcohol}
-                deleteBeer={deleteBeer}
-                updateBeer={updateBeer}
                 showBeer={showBeer}
               />)
         })
