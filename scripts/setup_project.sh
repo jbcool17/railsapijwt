@@ -33,7 +33,7 @@ cd ../../
 echo ''
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -
 echo '===> Updating public folder...'
-./scripts/all_deploy.sh
+./scripts/build_all.sh
 
 echo ''
 echo "PROJECT SETUP IS NOW COMPLETE!"
