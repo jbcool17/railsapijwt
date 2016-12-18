@@ -16,7 +16,7 @@ module Api::V1
     end
 
     def search
-      render json: @standings
+      render json: @output
     end
 
     # POST /standings
@@ -51,8 +51,14 @@ module Api::V1
       end
 
       def search_standings_by_name
-        @standings = Standing.where("lower(team_name) LIKE ?",
+        standings = Standing.where("lower(team_name) LIKE ?",
                                     "%#{params[:team_name].downcase}%").sort_by(&:points).reverse
+        dates = standings.collect { |r| r.created_at }
+        standings.each do |r|
+          r.created_at = Time.at(r.created_at).to_date
+        end
+
+        @output = standings.select { |r| r.created_at === Time.at(dates.max).to_date }
       end
 
       # Only allow a trusted parameter "white list" through.
