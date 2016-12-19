@@ -1,11 +1,9 @@
 class StaticController < ApplicationController
   include ActionController::HttpAuthentication::Basic::ControllerMethods
   before_action :http_basic_authenticate
-  # before_action :tracker!
-
 
   def tracker
-    render json: Tracker.all #{data: {test: 'Tracker.all'}}
+    render json: Tracker.all
   end
 
   private

@@ -1,4 +1,4 @@
-# rails-api-w-jwt
+# rails-api-w-jwt-backend
 
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 [![Stories in Progress](https://badge.waffle.io/jbcool17/railsapijwt.svg?label=In%20Progress&title=In%20Progress)](http://waffle.io/jbcool17/railsapijwt)
@@ -7,14 +7,15 @@
 [![Stories in Backlog](https://badge.waffle.io/jbcool17/railsapijwt.svg?label=backlog&title=backlog)](http://waffle.io/jbcool17/railsapijwt)
 
 > demonstrating APIs &amp; Json Web Token Creation/Authentication
-> [FrontEnd Repo](https://github.com/jbcool17/railsapijwt-frontend)
 
-This project uses the Rails 5 api only setting for the backend and a jekyll site generator to compile various mini sites using JS FrontEnd Frameworks(React) via custom scripts. They are currently hosted from [github.io/railsapijwt-frontend](https://github.com/jbcool17/railsapijwt-frontend). The purpose of this is to learn about APIs and Javascript Front-End Frameworks.
+This project uses the Rails 5 API setting for the backend and a jekyll site generator to compile various mini sites using JS FrontEnd Frameworks(React) via custom scripts. They are currently hosted from github.io: [railsapijwt-frontend](https://jbcool17.github.io/railsapijwt-frontend/). The purpose of this is to learn about APIs and Javascript Front-End Frameworks.
+- Frontend repo is located at: [Frontend Repo](https://github.com/jbcool17/railsapijwt-frontend)
 
 ## Table of Contents
 
 - [Development](#development)
 - [Usage](#usage)
+- [Deploy](#deploy)
 - [API](#api)
 - [Specs](#specs)
 - [Testing](#testing)
@@ -35,7 +36,8 @@ $ rake hockey:get_standings
 # start server
 $ rails s
 ```
-### Deploy
+
+## Deploy
 - This site deploys to [Heroku](https://floating-tor-40582.herokuapp.com/)
 
 ## API
