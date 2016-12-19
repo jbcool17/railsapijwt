@@ -9,7 +9,7 @@
 > demonstrating APIs &amp; Json Web Token Creation/Authentication
 > [FrontEnd Repo](https://github.com/jbcool17/railsapijwt-frontend)
 
-This project uses the Rails 5 api only setting for the backend and a jekyll site generator to compile various mini sites using JS FrontEnd Frameworks(React) via custom scripts. They are currently hosted from [github.io/railsapijwt-frontend](https://github.com/jbcool17/railsapijwt-frontend). The purpose of this is to learn about APIs and Javascript Front-End Frameworks.
+This project uses the Rails 5 API setting for the backend and a jekyll site generator to compile various mini sites using JS FrontEnd Frameworks(React) via custom scripts. They are currently hosted from [github.io/railsapijwt-frontend](https://jbcool17.github.io/railsapijwt-frontend/). The purpose of this is to learn about APIs and Javascript Front-End Frameworks.
 
 ## Table of Contents
 
