@@ -19,7 +19,6 @@ This project uses the Rails 5 api only setting for the backend and a jekyll site
 - [Specs](#specs)
 - [Testing](#testing)
 - [License](#license)
-- [How To - JWT Creation / Authentication via React App](#how-to)
 
 ## Development
 ```
