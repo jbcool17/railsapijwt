@@ -7,8 +7,9 @@
 [![Stories in Backlog](https://badge.waffle.io/jbcool17/railsapijwt.svg?label=backlog&title=backlog)](http://waffle.io/jbcool17/railsapijwt)
 
 > demonstrating APIs &amp; Json Web Token Creation/Authentication
+> [FrontEnd Repo](https://github.com/jbcool17/railsapijwt-frontend)
 
-This project uses the Rails 5 api only setting for the backend and a jekyll site generator to compile various mini sites using JS FrontEnd Frameworks(React) via custom scripts. They are currently hosted from the /public/ of the Rails Application. The purpose of this is to learn about APIs and Javascript Front-End Frameworks.
+This project uses the Rails 5 api only setting for the backend and a jekyll site generator to compile various mini sites using JS FrontEnd Frameworks(React) via custom scripts. They are currently hosted from [github.io/railsapijwt-frontend](https://github.com/jbcool17/railsapijwt-frontend). The purpose of this is to learn about APIs and Javascript Front-End Frameworks.
 
 ## Table of Contents
 
@@ -16,20 +17,11 @@ This project uses the Rails 5 api only setting for the backend and a jekyll site
 - [Usage](#usage)
 - [API](#api)
 - [Specs](#specs)
-- [Styles](#styles)
+- [Testing](#testing)
 - [License](#license)
-- [How To - JWT Creation / Authentication via React App](#how-to)
 
 ## Development
-- follow these instructions or run the following script:
-
 ```
-# Setup Project
-./scripts/setup_project.sh
-```
-
-```
-# Rails API Setup
 $ bundle install
 $ rake db:migrate
 
@@ -38,49 +30,13 @@ $ rake db:seed
 $ rake hockey:get_standings
 ```
 
-```
-# Static Site Generator - Jekyll - this will contain the mini sites
-$ cd _site_generator && bundle
-```
-
-```
-# React Mini Sites - work done from '_client' folder
-$ cd _clients/<PROJECT> && npm install
-```
-
 ## Usage
-### For Development - Static Sites
 ```
-# React Mini Sites - Work with Directly
-# JWTCredentialsSite @ http://localhost:5000/
-# HockeySite         @ http://localhost:5100/
-# Rails API          @ http://localhost:3000/
-# Start Up
-$ foreman start -f Procfile.react
-
-# Jekyll - Main Site - Hosting Mini Sites
-# This will build your mini sites automatically
-# http://localhost:4000
-$ foreman start
-
-```
-### Deploy
-```
-# When ready to deploy run:
-$ rake build:build_all
-# View Site @ http://localhost:3000
+# start server
 $ rails s
 ```
-
-### Other
-```
-# Build Helpers
-rake build:build_all              # Builds & deploys all sites to public folder
-rake build:credentials_build       # Build credentials react site and copies to site generator
-rake build:hockey_build            # Build hockey api react site and copies to site generator
-rake build:jekyll_build            # Builds Jekyll Site and copies to public
-```
-
+### Deploy
+- This site deploys to [Heroku](https://floating-tor-40582.herokuapp.com/)
 
 ## API
 
@@ -127,36 +83,12 @@ $ curl -X GET -H "Cache-Control: no-cache" "https://floating-tor-40582.herokuapp
 ## Specs
 - Ruby v2.3.1 / Rails v5.0.0.1
 - JWT
-- Uses npm for js frontend
 - Database - Development / Sqlite3 - Production / Postgresql
-- foreman / guard
 
-## Styles
-- styles being done in _site_generator but can also be done in react mini apps
+## Testing
+- Rspec
+- more to come
 
 ## License
 
 MIT © John Brilla
-
-# How To
-## JWT Creation / Authentication via React App
-- Check the browser console for status messages
-
-### 1 - Sign Up - with Email/Password/Password Confirmation
-- this gives you a confirmation link that would normally get sent out via email.
-
-![Step 2](https://floating-tor-40582.herokuapp.com/images/021.png)
-![Step 3](https://floating-tor-40582.herokuapp.com/images/031.png)
-
-### 2 - Click Confirm
-![Step 4](https://floating-tor-40582.herokuapp.com/images/041.png)
-
-### 3 - Login - Enter credentials from above, after confirmation complete.
-![Step 6](https://floating-tor-40582.herokuapp.com/images/061.png)
-
-### 4 - Current user should have the email.
-- JWT should be in the console.
-![Step 7](https://floating-tor-40582.herokuapp.com/images/071.png)
-
-### 5 - Click 'Get All Beer' to get data
-![Step 8](https://floating-tor-40582.herokuapp.com/images/081.png)
