@@ -18,12 +18,7 @@
 # Add files and commands to this file, like the example:
 #   watch(%r{file/path}) { `command(s)` }
 #
-guard :shell do
-  # watch(%r{^_clients/hockey/src/.+\.(css|js|html)}) {|m| `./scripts/all_deploy.sh` }
-  watch(%r{^_clients/hockey/src/.+\.(css|js|html)}) {|m| `./scripts/hockey_deploy.sh` }
-  watch(%r{^_clients/credentials/src/.+\.(css|js|html)}) {|m| `./scripts/credentials_deploy.sh` }
-end
-
-# guard 'livereload', host: 'localhost', port: '4000', notify: true do
-#   watch(%r{^_clients/hockey/src/.+\.(css|js|html)})
+# guard :shell do
+  # watch(%r{^_clients/hockey/src/.+\.(css|js|html)}) {|m| `./scripts/hockey_deploy.sh` }
+  # watch(%r{^_clients/credentials/src/.+\.(css|js|html)}) {|m| `./scripts/credentials_deploy.sh` }
 # end

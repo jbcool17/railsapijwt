@@ -9,12 +9,6 @@ Rails.application.routes.draw do
     end
   end
 
-
-    # scope '/api/v1' do
-    #   resources :beers
-    #   get '/beers/search/:name', to: 'beers#search'
-    # end
-
   scope module: 'api' do
     namespace :v1 do
       resources :beers
