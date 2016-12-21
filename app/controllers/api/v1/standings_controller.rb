@@ -19,6 +19,12 @@ module Api::V1
       render json: @output
     end
 
+    def dates
+      @standings = Standing.where("created_at < ?", Time.now )
+
+      render json: @standings
+    end
+
     # POST /standings
     def create
       @standing = Standing.new(standing_params)

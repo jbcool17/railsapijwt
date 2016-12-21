@@ -22,5 +22,9 @@
 
 class StandingSerializer < ActiveModel::Serializer
   attributes :id, :team_name, :games,
-              :wins, :losses, :losses_ot, :points
+              :wins, :losses, :losses_ot, :points, :date
+
+  def date
+    Time.at(object.created_at).to_date
+  end
 end
