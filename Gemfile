@@ -24,9 +24,10 @@ gem 'jwt'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# API
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
-
+gem 'will_paginate'
 # Web Scaping
 gem 'nokogiri'
 gem 'httparty'

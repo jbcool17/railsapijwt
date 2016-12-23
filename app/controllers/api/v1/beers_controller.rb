@@ -6,7 +6,7 @@ module Api::V1
 
     # GET /beers
     def index
-      @beers = Beer.all
+      @beers = Beer.page(params[:page] ? params[:page][:number] : 1)
 
       render json: @beers
     end

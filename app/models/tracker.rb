@@ -22,4 +22,5 @@
 #
 
 class Tracker < ApplicationRecord
+  
 end
