@@ -78,8 +78,16 @@ $ curl -X GET -H "Authorization: Bearer TOKEN" -H "Cache-Control: no-cache" "htt
 ```
 # No Token Needed
 
-# GET /v1/beers/search/:name
+# GET /v1/standings
+$ curl -X GET -H "Cache-Control: no-cache" "https://floating-tor-40582.herokuapp.com/v1/standings"
+
+# GET /v1/standings/:id
+$ curl -X GET -H "Cache-Control: no-cache" "https://floating-tor-40582.herokuapp.com/v1/standings/:id"
+
+# GET /v1/standings/search/:name
 $ curl -X GET -H "Cache-Control: no-cache" "https://floating-tor-40582.herokuapp.com/v1/standings/search/:name"
+
+
 ```
 
 ## Specs
