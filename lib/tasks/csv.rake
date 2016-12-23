@@ -1,3 +1,4 @@
+# Created for D3 Charts - WIP
 namespace :csv do
   desc "generate csv"
   task :standings => :environment do
@@ -13,7 +14,7 @@ namespace :csv do
         csv << begining << middle << ending
       end
     end
-    puts "Created CSV"
+    puts "CSV has been generated."
 
   end
 
@@ -32,6 +33,6 @@ namespace :csv do
         end
       end
     end
-    puts "Created CSV"
+    puts "CSV has been generated."
   end
 end

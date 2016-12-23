@@ -7,6 +7,9 @@ module Api::V1
     def index
       @standings = Standing.all
 
+      response.headers['X-Total-Count'] = '10'
+      response.headers['Access-Control-Allow-Headers'] = 'X-Total-Count'
+
       render json: @standings
     end
 
