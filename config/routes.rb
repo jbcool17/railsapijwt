@@ -14,8 +14,10 @@ Rails.application.routes.draw do
       resources :beers
       get '/beers/search/:name', to: 'beers#search'
 
+      get 'standings/dates', to: 'standings#dates'
       resources :standings
       get 'standings/search/:team_name', to: 'standings#search'
+
     end
   end
 
