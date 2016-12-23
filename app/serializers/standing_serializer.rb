@@ -21,9 +21,10 @@
 #
 
 class StandingSerializer < ActiveModel::Serializer
+  cache key: 'standings'
   attributes :id, :team_name, :games,
               :wins, :losses, :losses_ot, :points, :date
-              
+
   link(:show) { v1_standing_url(object) }
 
   def date

@@ -1,13 +1,14 @@
 module Api::V1
   class StandingsController < ApiController
+    include StandingHelper
     before_action :authenticate_request!, only: [:create, :update, :destroy]
     before_action :set_standing, only: [:show, :update, :destroy]
     before_action :search_standings_by_name, only: :search
 
     # GET /standings
     def index
-      standings = Standing.page(params[:page] ? params[:page][:number] : 1)
-      @standings = standings
+      @standings = fetch_standings
+      # @standings = Standing.page(params[:page] ? params[:page][:number] : 1)
 
       response.headers['X-Total-Count'] = '10'
       response.headers['Access-Control-Allow-Headers'] = 'X-Total-Count'
@@ -75,6 +76,15 @@ module Api::V1
       # Only allow a trusted parameter "white list" through.
       def standing_params
         params.require(:standing).permit(:team_name, :games, :wins, :losses, :losses_ot, :points, :points_pct, :goals, :opp_goals, :srs, :sos, :points_pct_old, :ro_wins)
+      end
+
+      def fetch_standings
+        standings =  $redis.get("standings")
+        if standings.nil?
+          standings = Standing.all.to_json
+          $redis.set("standings", standings)
+        end
+        @standings = JSON.load standings
       end
   end
 end
