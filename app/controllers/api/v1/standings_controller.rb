@@ -1,11 +1,16 @@
 module Api::V1
   class StandingsController < ApiController
+    before_action :authenticate_request!, only: [:create, :update, :destroy]
     before_action :set_standing, only: [:show, :update, :destroy]
     before_action :search_standings_by_name, only: :search
 
     # GET /standings
     def index
-      @standings = Standing.all
+      standings = Standing.page(params[:page] ? params[:page][:number] : 1)
+      @standings = standings
+
+      response.headers['X-Total-Count'] = '10'
+      response.headers['Access-Control-Allow-Headers'] = 'X-Total-Count'
 
       render json: @standings
     end
@@ -17,6 +22,12 @@ module Api::V1
 
     def search
       render json: @output
+    end
+
+    def dates
+      @standings = Standing.where("created_at < ?", Time.now )
+
+      render json: @standings
     end
 
     # POST /standings

@@ -18,4 +18,6 @@
 
 class BeerSerializer < ActiveModel::Serializer
   attributes :id, :name, :style, :alcohol, :hop, :yeast
+
+  link(:show) { v1_beer_url(object) }
 end

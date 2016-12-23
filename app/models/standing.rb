@@ -22,6 +22,9 @@
 
 class Standing < ApplicationRecord
 
+  # Pagination
+  self.per_page = 10
+  
   def self.get_teams
     Standing.all.select("id, team_name")
   end
