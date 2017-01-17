@@ -95,6 +95,12 @@ $ curl -X GET -H "Cache-Control: no-cache" "https://floating-tor-40582.herokuapp
 # GET /v1/standings/dates?date=2016-12-20
 # Gets all records before date
 $ curl -X GET -H "Cache-Control: no-cache" "https://floating-tor-40582.herokuapp.com/v1/standings/dates?date2016-12-20"
+
+# GET /v1/standings/teams
+# Returns list of teams
+$ curl "http://localhost:3000/v1/standings/teams"
+# Returns all records of team by date
+$ curl "http://localhost:3000/v1/standings/teams?name=Montreal%20Canadiens"
 ```
 
 ## Specs

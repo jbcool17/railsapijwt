@@ -2,8 +2,9 @@ module Api::V1
   class StandingsController < ApiController
     before_action :authenticate_request!, only: [:create, :update, :destroy]
     before_action :set_standing, only: [:show, :update, :destroy]
-    before_action :search_standings_by_team_name, only: :search
+    before_action :search_current_standings_by_team_name, only: :search
     before_action :search_standings_by_date, only: :dates
+    before_action :search_standings_by_team, only: :teams
 
     # GET /standings
     # Results are paginated
@@ -30,6 +31,12 @@ module Api::V1
     # Gets record before date
     def dates
       render json: @standings
+    end
+
+    # GET /standings/teams - Teams List
+    # GET /standings/teams?name=Montreal%20Canadiens
+    def teams
+      render json: @team_query
     end
 
     # POST /standings
@@ -63,7 +70,7 @@ module Api::V1
         @standing = Standing.find(params[:id])
       end
 
-      def search_standings_by_team_name
+      def search_current_standings_by_team_name
         # Query teams similar to...
         standings = Standing.where('lower(team_name) LIKE ?',"%#{params[:team_name].downcase}%").sort_by(&:points).reverse
 
@@ -82,6 +89,10 @@ module Api::V1
 
         # Gets records before date
         @standings = Standing.where("created_at < ?",  date)
+      end
+
+      def search_standings_by_team
+        @team_query = params[:name] ? Standing.where(team_name: params[:name]) : Standing.get_teams
       end
 
       # Only allow a trusted parameter "white list" through.
