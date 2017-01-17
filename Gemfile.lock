@@ -45,6 +45,8 @@ GEM
     arel (7.1.4)
     bcrypt (3.1.11)
     builder (3.2.2)
+    byebug (9.0.6)
+    coderay (1.1.1)
     concurrent-ruby (1.0.2)
     diff-lcs (1.2.5)
     erubis (2.7.0)
@@ -84,6 +86,15 @@ GEM
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
     pg (0.19.0)
+    pry (0.10.4)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    pry-byebug (3.4.2)
+      byebug (~> 9.0)
+      pry (~> 0.10)
+    pry-rails (0.3.4)
+      pry (>= 0.9.10)
     puma (3.6.2)
     rack (2.0.1)
     rack-cors (0.4.0)
@@ -133,6 +144,7 @@ GEM
       rspec-mocks (~> 3.5.0)
       rspec-support (~> 3.5.0)
     rspec-support (3.5.0)
+    slop (3.6.0)
     spring (2.0.0)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -153,6 +165,7 @@ GEM
     websocket-driver (0.6.4)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
+    will_paginate (3.1.5)
 
 PLATFORMS
   ruby
@@ -179,6 +192,7 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   sqlite3
   tzinfo-data
+  will_paginate
 
 RUBY VERSION
    ruby 2.3.1p112

@@ -78,8 +78,21 @@ $ curl -X GET -H "Authorization: Bearer TOKEN" -H "Cache-Control: no-cache" "htt
 ```
 # No Token Needed
 
-# GET /v1/beers/search/:name
+# GET /v1/standings
+# Default 10 Results
+$ curl -X GET -H "Cache-Control: no-cache" "https://floating-tor-40582.herokuapp.com/v1/standings"
+# Get by page
+$ curl -X GET -H "Cache-Control: no-cache" "https://floating-tor-40582.herokuapp.com/v1/standings?page%5Bnumber%5D=2
+# Get per_page
+$ curl -X GET -H "Cache-Control: no-cache" "https://floating-tor-40582.herokuapp.com/v1/standings?per_page=20
+
+# GET /v1/standings/:id
+$ curl -X GET -H "Cache-Control: no-cache" "https://floating-tor-40582.herokuapp.com/v1/standings/:id"
+
+# GET /v1/standings/search/:name
 $ curl -X GET -H "Cache-Control: no-cache" "https://floating-tor-40582.herokuapp.com/v1/standings/search/:name"
+
+
 ```
 
 ## Specs

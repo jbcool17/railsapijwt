@@ -22,7 +22,14 @@
 
 class Standing < ApplicationRecord
 
+  # Pagination
+  self.per_page = 10
+
   def self.get_teams
-    Standing.all.select("id, team_name")
+    Standing.all.select("id, team_name").map(&:team_name).uniq
+  end
+
+  def self.get_team_standings(team)
+    Standing.where(team_name: team)
   end
 end

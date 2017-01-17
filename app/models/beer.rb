@@ -17,9 +17,10 @@
 #
 
 class Beer < ApplicationRecord
-  # scope :starts_with, -> (name) { where("name like ?", "#{name}%")}
-
   before_create :set_date
+
+  # Pagination
+  self.per_page = 10
 
   def set_date
     self.date = Time.now
