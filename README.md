@@ -92,7 +92,9 @@ $ curl -X GET -H "Cache-Control: no-cache" "https://floating-tor-40582.herokuapp
 # GET /v1/standings/search/:name
 $ curl -X GET -H "Cache-Control: no-cache" "https://floating-tor-40582.herokuapp.com/v1/standings/search/:name"
 
-
+# GET /v1/standings/dates?date=2016-12-20
+# Gets all records before date
+$ curl -X GET -H "Cache-Control: no-cache" "https://floating-tor-40582.herokuapp.com/v1/standings/dates?date2016-12-20"
 ```
 
 ## Specs

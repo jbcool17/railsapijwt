@@ -3,6 +3,7 @@ module Api::V1
     before_action :authenticate_request!, only: [:create, :update, :destroy]
     before_action :set_standing, only: [:show, :update, :destroy]
     before_action :search_standings_by_team_name, only: :search
+    before_action :search_standings_by_date, only: :dates
 
     # GET /standings
     # Results are paginated
@@ -25,8 +26,10 @@ module Api::V1
       render json: @standings
     end
 
+    # GET /standings/dates?date=2016-12-17
+    # Gets record before date
     def dates
-      render json: Standing.where("created_at < ?", Time.now )
+      render json: @standings
     end
 
     # POST /standings
@@ -72,6 +75,13 @@ module Api::V1
 
         # Select records with most recent date
         @standings = standings.select { |r| r.created_at == Time.at(dates.max).to_date }
+      end
+
+      def search_standings_by_date
+        date = params[:date] ? params[:date] : Time.now.days_ago(1)
+
+        # Gets records before date
+        @standings = Standing.where("created_at < ?",  date)
       end
 
       # Only allow a trusted parameter "white list" through.
