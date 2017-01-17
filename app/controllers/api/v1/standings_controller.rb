@@ -72,7 +72,11 @@ module Api::V1
 
       def search_current_standings_by_team_name
         # Query teams similar to...
-        standings = Standing.where('lower(team_name) LIKE ?',"%#{params[:team_name].downcase}%").sort_by(&:points).reverse
+        if params[:team_name].length > 1
+          standings = Standing.where('lower(team_name) LIKE ?',"%#{params[:team_name].downcase}%").sort_by(&:points).reverse
+        else
+          standings = Standing.all
+        end
 
         # Collect dates to get most recent
         dates = standings.collect(&:created_at)
