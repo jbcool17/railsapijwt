@@ -22,7 +22,9 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'jwt'
 
 # Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+gem 'capistrano-rails', group: :development
+gem 'capistrano-rvm', group: :development
+gem 'capistrano-passenger', group: :development
 
 # API
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
