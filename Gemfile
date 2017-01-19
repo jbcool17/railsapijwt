@@ -43,7 +43,6 @@ group :development, :test do
   # gem 'rb-readline', '~> 0.5.3'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
-  gem 'sqlite3'
 end
 
 group :development do
