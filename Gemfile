@@ -22,9 +22,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'jwt'
 
 # Use Capistrano for deployment
-gem 'capistrano-rails', group: :development
-gem 'capistrano-rvm', group: :development
-gem 'capistrano-passenger', group: :development
+
 
 # API
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
@@ -45,10 +43,14 @@ group :development, :test do
   # gem 'rb-readline', '~> 0.5.3'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
-  # gem 'sqlite3'
+  gem 'sqlite3'
+
 end
 
 group :development do
+  gem 'capistrano-rails'
+  gem 'capistrano-rvm'
+  gem 'capistrano-passenger'
   gem 'listen', '~> 3.0.5'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
