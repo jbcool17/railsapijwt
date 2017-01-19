@@ -24,6 +24,11 @@ test:
   timeout: 5000
   database: db/test.sqlite3
 
+staging:
+  <<: *default
+  database: railsapijwt
+  username: railsapijwt
+  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
 production:
   <<: *default
   database: railsapijwt

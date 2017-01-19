@@ -8,6 +8,9 @@ set :branch, 'capistrano-deploy'
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
 set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
 set :rvm_ruby_version, '2.3.1'
+set :rvm_type, :deploy                     # Defaults to: :auto
+# set :rvm_ruby_version, '2.0.0-p247'      # Defaults to: 'default'
+# set :rvm_custom_path, '~/.myveryownrvm'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
