@@ -3,7 +3,7 @@
 
 set :application, "railsapijwt"
 set :repo_url, "git@github.com:jbcool17/railsapijwt.git"
-set :branch, 'capistrano'
+set :branch, 'master'
 
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
 set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
