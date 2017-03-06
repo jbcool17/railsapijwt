@@ -5,15 +5,15 @@ default: &default
 
 development:
   <<: *default
-  user: john
-  password: john
+  user: postgres
+  password: postgres
   database: railsapijwt_development
   host: localhost
   port: 5432
 test:
   <<: *default
-  user: john
-  password: john
+  user: postgres
+  password: postgres
   database: railsapijwt_test
   host: localhost
   port: 5432
